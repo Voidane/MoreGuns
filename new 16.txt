@@ -1,0 +1,66 @@
+schedule 1 stream recycler onlys 
+
+more guns , more melees more bullets
+
+npc indicator : Where above their heads it shows if you can trade with them or not
+
+
+- Viewmodel for positioning the gun for th eplayer when equipped:
+public Vector3 localPosition;
+public Vector3 localEulerAngles;
+public Vector3 localScale;
+
+- public AvatarEquippable AvatarEquippable;
+
+AK47
+no Hammer
+no Magazine LOD1
+Might need to presetup the positions for empties in blender
+Might need to rotate the gun parts around to match game local positions if worst comes to worse
+AvatarEquippable.AnimationTrigger is using default
+HandGunAnimator may not be correct
+pivot/center : https://docs.unity3d.com/550/Documentation/Manual/PositioningGameObjects.html
+
+- Stored Item
+- Check mags LOD
+- need to check if all scripts stay included in assets
+- IMPORTANT: if rotations and transforms dont look right, we just might need to rotate the meshes in blender and replicate them eactly
+from the game, also make sure to start all objects at world origin!
+- https://discord.com/channels/1349221936470687764/1361343204565188668
+
+If display text for quantity isnt working right, maybe assign IntegerItemUI at runtime.
+
+- Assigning AK47_Stored_Magazine onto Ak47_Magazine (Integer Item Definition) Stored Item
+- AK might be way to big
+
+When I think I have completed everything, i should go over everything in unity explorer and compare
+could use local multiplayer for this.
+
+- saving 
+using HarmonyLib;
+using Il2CppScheduleOne.Persistence;
+using Il2CppScheduleOne.Persistence.Datas;
+using DealerSelfSupplySystem.Persistence;
+
+namespace DealerSelfSupplySystem.Patches
+{
+    [HarmonyPatch(typeof(SaveManager), nameof(SaveManager.Save), new Type[] { typeof(string) })]
+    public static class SavePatch
+    {
+        public static void Postfix(SaveManager __instance, string saveFolderPath)
+        {
+            DealerSaveDataManager.SaveData(saveFolderPath);
+            Core.MelonLogger.Msg($"Saved dealer storage data for save at {saveFolderPath}");
+        }
+    }
+
+    [HarmonyPatch(typeof(LoadManager), nameof(LoadManager.StartGame))]
+    public static class LoadStartPatch
+    {
+        public static void Postfix(LoadManager __instance, SaveInfo info, bool allowLoadStacking)
+        {
+            DealerSaveDataManager.LoadData(info.SavePath);
+            Core.MelonLogger.Msg($"Loaded dealer storage data from {info.SavePath}");
+        }
+    }
+} 
