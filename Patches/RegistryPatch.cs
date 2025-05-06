@@ -18,15 +18,13 @@ namespace MoreGuns.Patches
 
         public static void Prefix(Registry __instance, string ID)
         {
-            MelonLogger.Msg("Registry is patched now!");
-
-            if (!isWeaponsRegistered)
+            if (AK47.AK47MagazineIntItemDef == null)
             {
-                if (AK47.AK47MagazineIntItemDef == null)
-                {
-                    MelonLogger.Msg("re implementing guns");
-                    MelonCoroutines.Start(MoreGunsMod.LoadAssetBundleCoroutine());
-                }
+                MelonLogger.Error("Error occurred, statics reset");
+
+                MelonCoroutines.Start(MoreGunsMod.LoadAssetBundleCoroutine());
+
+                return;
             }
 
             if (!isWeaponsRegistered && AK47.AK47MagazineIntItemDef != null)

@@ -17,18 +17,28 @@ namespace MoreGuns.Guns
 
         public static void Initialize(GameObject _AK47Equippable, IntegerItemDefinition _AK47IntItemDef, IntegerItemDefinition _AK47MagazineIntItemDef)
         {
-            AK47Equippable = _AK47Equippable;
-            AK47IntItemDef = _AK47IntItemDef;
-            AK47MagazineIntItemDef = _AK47MagazineIntItemDef;
-
-            if (AK47MagazineIntItemDef == null)
+            /**
+            if (_AK47Equippable == null)
             {
-                MelonLogger.Error("Setting the IID made it null");
+                MelonLogger.Error("Cannot add GunSettings - _AK47Equippable is null!");
+                return;
+            }
+
+            GunSettings settings = _AK47Equippable.AddComponent<GunSettings>();
+            if (settings != null)
+            {
+                settings.IsAutomatic = true;
+                MelonLogger.Msg("GunSettings added successfully");
             }
             else
             {
-                MelonLogger.Msg("Setting the IID worked!");
+                MelonLogger.Error("settings was null and could not be added.");
             }
+            **/
+
+            AK47Equippable = _AK47Equippable;
+            AK47IntItemDef = _AK47IntItemDef;
+            AK47MagazineIntItemDef = _AK47MagazineIntItemDef;
 
             SetCustomItemUI();
         }
