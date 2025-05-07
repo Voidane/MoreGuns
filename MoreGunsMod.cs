@@ -25,7 +25,8 @@ namespace MoreGuns
 
         public override void OnInitializeMelon()
         {
-            MelonLogger.Msg("Initialized");
+            MelonLogger.Msg("Thank you for using More Guns! Discord: ");
+            
 
             ClassInjector.RegisterTypeInIl2Cpp<GunSettings>();
             new HarmonyLib.Harmony("com.voidane.moregunsil2cpp").PatchAll();
@@ -40,6 +41,7 @@ namespace MoreGuns
             {
                 MelonLogger.Error("Voidanes Guns could not be loaded from resx.");
             }
+            MelonLogger.Msg("Initialized");
         }
 
         public override void OnSceneWasLoaded(int buildIndex, string sceneName)
@@ -97,42 +99,81 @@ namespace MoreGuns
 
         public static IEnumerator LoadAssetBundleCoroutine()
         {
-                GameObject AK47Equippable = TryLoadAsset<GameObject>("assets/resources/weapons/ak47/ak47_equippable.prefab");
-                yield return AK47Equippable;
+            Il2CppAssetBundleRequest Il2CppAK47EquippableRq = assetBundle.LoadAssetAsync("assets/resources/weapons/ak47/ak47_equippable.prefab");
+            yield return Il2CppAK47EquippableRq;
+            UnityEngine.Object UEOAK47Equippable = Il2CppAK47EquippableRq.asset;
+            GameObject AK47Equippable = UEOAK47Equippable.Cast<GameObject>();
 
-                IntegerItemDefinition AK47MagazineIntIDef = TryLoadAsset<IntegerItemDefinition>("AK47_Magazine");
-                yield return AK47MagazineIntIDef;
+            if (AK47Equippable == null)
+            {
+                MelonLogger.Error("[Loaded Assets Failure] AK47Equippable prefab is null");
+            }
+            else
+            {
+                MelonLogger.Msg("[Loaded Assets] AK47Equippable (assets/resources/weapons/ak47/ak47_equippable.prefab)");
+            }
 
-                IntegerItemDefinition AK47IntIDef = TryLoadAsset<IntegerItemDefinition>("assets/resources/weapons/ak47/ak47.asset");
-                yield return AK47IntIDef;
+            Il2CppAssetBundleRequest Il2CppAK47MagazineIntIDef = assetBundle.LoadAssetAsync("AK47_Magazine");
+            yield return Il2CppAK47MagazineIntIDef;
+            UnityEngine.Object UEOAK47MagazineIntIDef = Il2CppAK47MagazineIntIDef.asset;
+            IntegerItemDefinition AK47MagazineIntIDef = UEOAK47MagazineIntIDef.Cast<IntegerItemDefinition>();
 
-                GameObject AK47HandGun = TryLoadAsset<GameObject>("assets/resources/avatar/equippables/ak47.prefab");
-                yield return AK47HandGun;
+            if (AK47MagazineIntIDef == null)
+            {
+                MelonLogger.Error("[Loaded Assets Failure] AK47MagazineIntIDef prefab is null");
+            }
+            else
+            {
+                MelonLogger.Msg("[Loaded Assets] AK47MagazineIntIDef (AK47_Magazine)");
+            }
 
-                GameObject AK47MagazineEquippable = TryLoadAsset<GameObject>("assets/resources/weapons/ak47/magazine/ak47_magazine_avatarequippable.prefab");
-                yield return AK47MagazineEquippable;
+            Il2CppAssetBundleRequest Il2CppAK47IntIDef = assetBundle.LoadAssetAsync("assets/resources/weapons/ak47/ak47.asset");
+            yield return Il2CppAK47IntIDef;
+            UnityEngine.Object UEOAk47IntIDef = Il2CppAK47IntIDef.asset;
+            IntegerItemDefinition AK47IntIDef = UEOAk47IntIDef.Cast<IntegerItemDefinition>();
 
-                if (AK47MagazineEquippable == null)
-                {
-                    MelonLogger.Error("ak47magazineAvatarEquippable prefab is null");
-                }
-                else
-                {
-                    RegisterAsset("Weapons/ak47/Magazine/AK47_Magazine_AvatarEquippable", AK47MagazineEquippable);
-                    MelonLogger.Msg("Found Asset Weapons/ak47/Magazine/AK47_Magazine_AvatarEquippable");
-                }
+            if (AK47IntIDef == null)
+            {
+                MelonLogger.Error("[Loaded Assets Failure] AK47IntIDef prefab is null");
+            }
+            else
+            {
+                MelonLogger.Msg("[Loaded Assets] AK47IntIDef (assets/resources/weapons/ak47/ak47.asset)");
+            }
 
-                if (AK47HandGun == null)
-                {
-                    MelonLogger.Error("AK47 Handgun is null");
-                }
-                else
-                {
-                    RegisterAsset("Avatar/Equippables/AK47", AK47HandGun);
-                    MelonLogger.Msg("Found Asset Avatar/Equippables/AK47");
-                }
+            Il2CppAssetBundleRequest Il2CppAk47HandGun = assetBundle.LoadAssetAsync("assets/resources/avatar/equippables/ak47.prefab");
+            yield return Il2CppAk47HandGun;
+            UnityEngine.Object UEOAk47HandGun = Il2CppAk47HandGun.asset;
+            GameObject AK47HandGun = UEOAk47HandGun.Cast<GameObject>();
 
-                AK47.Initialize(AK47Equippable, AK47IntIDef, AK47MagazineIntIDef);
+            if (AK47IntIDef == null)
+            {
+                MelonLogger.Error("[Loaded Assets Failure] AK47HandGun prefab is null");
+            }
+            else
+            {
+                RegisterAsset("Avatar/Equippables/AK47", AK47HandGun);
+                MelonLogger.Msg("[Loaded Assets] AK47HandGun (assets/resources/avatar/equippables/ak47.prefab)");
+            }
+
+            Il2CppAssetBundleRequest Il2CppAK47MagazineEquippable = assetBundle.LoadAssetAsync("assets/resources/weapons/ak47/magazine/ak47_magazine_avatarequippable.prefab");
+            yield return Il2CppAK47MagazineEquippable;
+            UnityEngine.Object UEOAK47MagazineEquippable = Il2CppAK47MagazineEquippable.asset;
+            GameObject AK47MagazineEquippable = UEOAK47MagazineEquippable.Cast<GameObject>();
+
+            if (AK47IntIDef == null)
+            {
+                MelonLogger.Error("[Loaded Assets Failure] AK47HandGun prefab is null");
+            }
+            else
+            {
+                RegisterAsset("Weapons/ak47/Magazine/AK47_Magazine_AvatarEquippable", AK47MagazineEquippable);
+                MelonLogger.Msg("[Loaded Assets] AK47HandGun (assets/resources/avatar/equippables/ak47.prefab)");
+            }
+
+            AK47.Initialize(AK47Equippable, AK47IntIDef, AK47MagazineIntIDef);
+
+            yield return null;
         }
 
         public static T TryLoadAsset<T>(string assetName) where T : UnityEngine.Object

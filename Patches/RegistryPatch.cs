@@ -14,25 +14,23 @@ namespace MoreGuns.Patches
     public static class RegistryPatch
     {
         public static bool isWeaponsRegistered = false;
-        public static bool hasPatchBeenRan = false;
+        private static readonly object _mulock = new object();
 
         public static void Prefix(Registry __instance, string ID)
         {
-            if (AK47.AK47MagazineIntItemDef == null)
-            {
-                MelonLogger.Error("Error occurred, statics reset");
-
-                MelonCoroutines.Start(MoreGunsMod.LoadAssetBundleCoroutine());
-
+            if (isWeaponsRegistered)
                 return;
-            }
 
-            if (!isWeaponsRegistered && AK47.AK47MagazineIntItemDef != null)
+            lock (_mulock)
             {
+                if (isWeaponsRegistered)
+                    return;
+
                 __instance.AddToRegistry(AK47.AK47MagazineIntItemDef);
                 MelonLogger.Msg("Registered ak47mag");
                 __instance.AddToRegistry(AK47.AK47IntItemDef);
                 MelonLogger.Msg("Registered ak47");
+
                 isWeaponsRegistered = true;
             }
         }

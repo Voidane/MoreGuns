@@ -14,12 +14,7 @@ namespace MoreGuns.Guns
     [RegisterTypeInIl2Cpp]
     class GunSettings : MonoBehaviour
     {
-        Il2CppValueField<bool> isAutomatic;
-        public bool IsAutomatic
-        {
-            get { return isAutomatic.Value; }
-            set { isAutomatic.Value = value; }
-        }
+        public Il2CppValueField<bool> isAutomatic;
 
         public GunSettings(IntPtr ptr) : base(ptr) { }
 
