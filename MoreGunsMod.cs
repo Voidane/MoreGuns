@@ -19,6 +19,7 @@ using System.Text.RegularExpressions;
 using ScheduleOne;
 using ScheduleOne.Persistence;
 using MoreGunsMono.Patches;
+using VLB;
 
 namespace MoreGunsMono
 {
@@ -43,6 +44,7 @@ namespace MoreGunsMono
             new HarmonyLib.Harmony("com.voidane.moreguns").PatchAll();
             assetBundle = AssetBundle.LoadFromStream(stream);
             stream.Close();
+            Config.Init();
 
             if (assetBundle != null)
             {
@@ -53,6 +55,11 @@ namespace MoreGunsMono
             {
                 MelonLogger.Error("Assetbundle was null");
             }
+        }
+
+        public override void OnApplicationQuit()
+        {
+            
         }
 
         private IEnumerator LoadAssetBundleCoroutine()
@@ -72,6 +79,10 @@ namespace MoreGunsMono
             AssetBundleRequest request_AK47_IntegerItemDefinition = assetBundle.LoadAssetAsync<IntegerItemDefinition>("AK47");
             yield return request_AK47_IntegerItemDefinition;
 
+            AssetBundleRequest request_AK47_Magazine_Trash = assetBundle.LoadAssetAsync<GameObject>("assets/resources/weapons/ak47/magazine/AK47_Magazine_Trash.prefab");
+            yield return request_AK47_Magazine_Trash;
+            GameObject ak47MagTrash = request_AK47_Magazine_Trash.asset as GameObject;
+
             AssetBundleRequest request_AK47_Prefab = assetBundle.LoadAssetAsync<GameObject>("assets/resources/avatar/equippables/ak47.prefab");
             yield return request_AK47_Prefab;
             GameObject ak47Prefab = request_AK47_Prefab.asset as GameObject;
@@ -80,57 +91,10 @@ namespace MoreGunsMono
             yield return requestAk47MagazineAvatarEquippable;
             GameObject ak47magazineAvatarEquippable = requestAk47MagazineAvatarEquippable.asset as GameObject;
 
-            if (ak47magazineAvatarEquippable == null)
-            {
-                MelonLogger.Error("ak47magazineAvatarEquippable prefab is null");
-            }
-            else
-            {
-                Resource.RegisterAsset("Weapons/ak47/Magazine/AK47_Magazine_AvatarEquippable", ak47Prefab);
-                MelonLogger.Msg("Found ak47magazineAvatarEquippable");
-            }
-
-            if (ak47Prefab == null)
-            {
-                MelonLogger.Error("ak47 prefab is null");
-            }
-            else
-            {
-                Resource.RegisterAsset("Avatar/Equippables/AK47", ak47Prefab);
-                MelonLogger.Msg("Found ak47prefab");
-            }
-
-
             IntegerItemDefinition ak47MagazineIntegerItemDefinition = request_AK47_Magazine_IntegerItemDefinition.asset as IntegerItemDefinition;
             IntegerItemDefinition ak47IntegerItemDefinition = request_AK47_IntegerItemDefinition.asset as IntegerItemDefinition;
-            AK47.InitializeAK47(request_AK47_Equippable.asset as GameObject, ak47MagazineIntegerItemDefinition, ak47IntegerItemDefinition);
 
-            if (AK47._AK47_IntegerItemDefiniition == null)
-            {
-                MelonLogger.Error("Could not load in IntegerItemDefinition of ak47IntegerItemDefinition");
-            }
-            else
-            {
-                MelonLogger.Msg("Loaded in ak47 item definition");
-            }
-
-            if (AK47._AK47_Magazine_IntegerItemDefiniition == null)
-            {
-                MelonLogger.Error("Could not load in IntegerItemDefinition");
-            }
-            else
-            {
-                MelonLogger.Msg("Loaded in ak47 mag item definition");
-            }
-
-            if (AK47._AK47_Equippable != null)
-            {
-                MelonLogger.Msg("Loaded in ak47");
-            }
-            else
-            {
-                MelonLogger.Error("Could not load in ak47");
-            }
+            AK47.InitializeAK47(request_AK47_Equippable.asset as GameObject, ak47MagazineIntegerItemDefinition, ak47IntegerItemDefinition, ak47MagTrash);
         }
 
         public override void OnSceneWasLoaded(int buildIndex, string sceneName)
@@ -152,7 +116,7 @@ namespace MoreGunsMono
             }
             else
             {
-                RegisterItemsBeforeLoad.isWeaponsRegistered = false;
+                ItemRegistryPatch.isWeaponsRegistered = false;
             }
         }
 
@@ -197,7 +161,7 @@ namespace MoreGunsMono
 
             MelonLogger.Msg("Setting up AK47");
 
-            FixShader(AK47._AK47_Equippable);
+            FixShader(AK47.AK47_Equippable);
 
             MelonLogger.Msg($"Added Comp");
         }

@@ -64,11 +64,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config.cs" />
     <Compile Include="Guns\AK47.cs" />
     <Compile Include="Guns\GunSettings.cs" />
     <Compile Include="Guns\WeaponBase.cs" />
     <Compile Include="MoreGunsMod.cs" />
     <Compile Include="Patches\Equippale_RangedWeaponPatch.cs" />
+    <Compile Include="Patches\ItemRegistryPatch.cs" />
     <Compile Include="Patches\SetEquippablePatch.cs" />
     <Compile Include="Patches\SaveLoadManaging.cs" />
     <Compile Include="Patches\StanNPCPatch.cs" />

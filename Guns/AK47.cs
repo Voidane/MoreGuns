@@ -11,28 +11,42 @@ using ScheduleOne.Storage;
 using MelonLoader;
 using UnityEngine.Events;
 using ScheduleOne.Dialogue;
+using ScheduleOne.DevUtilities;
+using ScheduleOne.Trash;
 
 namespace MoreGunsMono.Guns
 {
     public static class AK47 
     {
-        public static GameObject _AK47_Equippable;
-        public static IntegerItemDefinition _AK47_Magazine_IntegerItemDefiniition;
-        public static IntegerItemDefinition _AK47_IntegerItemDefiniition;
+        public static GameObject AK47_Equippable;
+        public static Equippable_RangedWeapon AK47RangedWeapon;
+
+        public static IntegerItemDefinition AK47IntItemDef;
+        public static IntegerItemDefinition AK47MagazineIntItemDef;
+        
         public static DialogueController_ArmsDealer.WeaponOption rangedAK47;
         public static DialogueController_ArmsDealer.WeaponOption ammoAK47;
 
-        public static void InitializeAK47(GameObject ak47, IntegerItemDefinition ak47MagazineIntegerItemDefiniition, IntegerItemDefinition ak47IntegerItemDefinition)
+        public static GameObject AK47MagTrash;
+        public static TrashItem AK47MagTrashItem;
+
+        public static void InitializeAK47(GameObject ak47, IntegerItemDefinition ak47MagazineIntegerItemDefiniition, IntegerItemDefinition ak47IntegerItemDefinition, GameObject ak47MagTrash)
         {
             GunSettings settings = ak47.AddComponent<GunSettings>();
             settings.isAutomatic = true;
 
-            _AK47_Equippable = ak47;
-            _AK47_Magazine_IntegerItemDefiniition = ak47MagazineIntegerItemDefiniition;
-            _AK47_IntegerItemDefiniition = ak47IntegerItemDefinition;
+            AK47_Equippable = ak47;
+            AK47RangedWeapon = AK47_Equippable.GetComponent<Equippable_RangedWeapon>();
+
+            AK47MagazineIntItemDef = ak47MagazineIntegerItemDefiniition;
+            AK47IntItemDef = ak47IntegerItemDefinition;
+            
+            AK47MagTrash = ak47MagTrash;
+            AK47MagTrashItem = AK47MagTrash.GetComponent<TrashItem>();
 
             SetCustomItemUI();
-            CreateDialogueControllgerOptions();
+            UpdateSettingsFromConfig();
+            CreateDialogueControllerOptions();
         }
 
         private static void SetCustomItemUI()
@@ -45,30 +59,51 @@ namespace MoreGunsMono.Guns
             }
             else
             {
-                _AK47_IntegerItemDefiniition.CustomItemUI = defintion.CustomItemUI;
-                _AK47_Magazine_IntegerItemDefiniition.CustomItemUI = defintion.CustomItemUI;
+                AK47IntItemDef.CustomItemUI = defintion.CustomItemUI;
+                AK47MagazineIntItemDef.CustomItemUI = defintion.CustomItemUI;
             }
         }
 
-        private static void CreateDialogueControllgerOptions()
+        private static void CreateDialogueControllerOptions()
         {
             rangedAK47 = new DialogueController_ArmsDealer.WeaponOption
             {
-                Name = "AK47",
-                Price = 15000F,
+                Name = Config.ak47ItemName.Value,
+                Price = Config.ak47PurchasePrice.Value,
                 IsAvailable = true,
                 NotAvailableReason = "",
-                Item = _AK47_IntegerItemDefiniition
+                Item = AK47IntItemDef
             };
 
             ammoAK47 = new DialogueController_ArmsDealer.WeaponOption
             {
-                Name = "AK47 Magazine (Medium)",
-                Price = 1000F,
+                Name = Config.ak47MagItemName.Value,
+                Price = Config.ak47magPurchasePrice.Value,
                 IsAvailable = true,
                 NotAvailableReason = "",
-                Item = _AK47_Magazine_IntegerItemDefiniition
+                Item = AK47MagazineIntItemDef
             };
+        }
+
+        private static void UpdateSettingsFromConfig()
+        {
+            AK47RangedWeapon.Damage = Config.ak47Damage.Value;
+            AK47RangedWeapon.ImpactForce = Config.ak47ImpactForce.Value;
+            AK47RangedWeapon.AimFOVReduction = Config.ak47aimFOVReduction.Value;
+            AK47RangedWeapon.AccuracyChangeDuration = Config.ak47accuracyChangeDuration.Value;
+            AK47RangedWeapon.MagazineSize = Config.ak47magazineSize.Value;
+
+            AK47IntItemDef.Name = Config.ak47DisplayItemName.Value;
+            AK47IntItemDef.Description = Config.ak47DisplayDescription.Value;
+            AK47IntItemDef.LabelDisplayColor = Config.ak47LabelDisplayColor.Value;
+            AK47IntItemDef.legalStatus = Config.ak47LegalStatus.Value;
+            AK47IntItemDef.RequiredRank = Config.ak47requiredRank.Value;
+
+            AK47MagazineIntItemDef.Name = Config.ak47MagDisplayItemName.Value;
+            AK47MagazineIntItemDef.Description = Config.ak47MagDisplayDescription.Value;
+            AK47MagazineIntItemDef.LabelDisplayColor = Config.ak47LabelDisplayColor.Value;
+            AK47MagazineIntItemDef.legalStatus = Config.ak47MagLegalStatus.Value;
+            AK47MagazineIntItemDef.RequiredRank = Config.ak47MagrequiredRank.Value;
         }
     }
 }

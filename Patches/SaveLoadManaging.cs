@@ -30,25 +30,7 @@ namespace MoreGunsMono.Patches
     {
         public static void Postfix(LoadManager __instance, SaveInfo info, bool allowLoadStacking)
         {
-            MelonLogger.Msg("Loadmanager start game");
-        }
-    }
 
-    [HarmonyPatch(typeof(Registry), nameof(Registry._GetItem))]
-    public static class RegisterItemsBeforeLoad
-    {
-        public static bool isWeaponsRegistered = false;
-
-        public static void Prefix(Registry __instance, string ID)
-        {
-            if (!isWeaponsRegistered && AK47._AK47_Magazine_IntegerItemDefiniition != null)
-            {
-                __instance.AddToRegistry(AK47._AK47_Magazine_IntegerItemDefiniition);
-                MelonLogger.Msg("Registered ak47mag");
-                __instance.AddToRegistry(AK47._AK47_IntegerItemDefiniition);
-                MelonLogger.Msg("Registered ak47");
-                isWeaponsRegistered = true;
-            }
         }
     }
 

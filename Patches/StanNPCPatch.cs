@@ -27,7 +27,7 @@ namespace MoreGunsMono.Patches
 
         public static IEnumerator InitializeStore(Stan __instance)
         {
-            while (!RegisterItemsBeforeLoad.isWeaponsRegistered)
+            while (!ItemRegistryPatch.isWeaponsRegistered)
             {
                 MelonLogger.Msg("Attempting to setup stan store, waiting on registries!");
                 yield return new WaitForSeconds(0.5F);
