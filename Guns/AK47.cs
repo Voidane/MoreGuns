@@ -13,13 +13,18 @@ using UnityEngine.Events;
 using ScheduleOne.Dialogue;
 using ScheduleOne.DevUtilities;
 using ScheduleOne.Trash;
+using System.Collections;
+using ScheduleOne.Doors;
 
 namespace MoreGunsMono.Guns
 {
-    public static class AK47 
+    public class AK47 : WeaponBase
     {
-        public static GameObject AK47_Equippable;
+        public static GameObject AK47Equippable;
         public static Equippable_RangedWeapon AK47RangedWeapon;
+
+        public static GameObject AK47Handgun;
+        public static GameObject AK47MagAvatarEquippable;
 
         public static IntegerItemDefinition AK47IntItemDef;
         public static IntegerItemDefinition AK47MagazineIntItemDef;
@@ -30,23 +35,11 @@ namespace MoreGunsMono.Guns
         public static GameObject AK47MagTrash;
         public static TrashItem AK47MagTrashItem;
 
-        public static void InitializeAK47(GameObject ak47, IntegerItemDefinition ak47MagazineIntegerItemDefiniition, IntegerItemDefinition ak47IntegerItemDefinition, GameObject ak47MagTrash)
+        public static void Init()
         {
-            GunSettings settings = ak47.AddComponent<GunSettings>();
-            settings.isAutomatic = true;
-
-            AK47_Equippable = ak47;
-            AK47RangedWeapon = AK47_Equippable.GetComponent<Equippable_RangedWeapon>();
-
-            AK47MagazineIntItemDef = ak47MagazineIntegerItemDefiniition;
-            AK47IntItemDef = ak47IntegerItemDefinition;
-            
-            AK47MagTrash = ak47MagTrash;
-            AK47MagTrashItem = AK47MagTrash.GetComponent<TrashItem>();
-
-            SetCustomItemUI();
-            UpdateSettingsFromConfig();
-            CreateDialogueControllerOptions();
+            MelonLogger.Msg("Initializing AK47");
+            MelonCoroutines.Start(LoadGun());
+            MelonLogger.Msg("Finished Initializing AK47");
         }
 
         private static void SetCustomItemUI()
@@ -104,6 +97,77 @@ namespace MoreGunsMono.Guns
             AK47MagazineIntItemDef.LabelDisplayColor = Config.ak47LabelDisplayColor.Value;
             AK47MagazineIntItemDef.legalStatus = Config.ak47MagLegalStatus.Value;
             AK47MagazineIntItemDef.RequiredRank = Config.ak47MagrequiredRank.Value;
+        }
+
+        private static IEnumerator LoadGun()
+        {
+            AssetBundleRequest rqAK47Equippable = MoreGunsMod.assetBundle.LoadAssetAsync<GameObject>("AK47_Equippable");
+            yield return rqAK47Equippable;
+            GameObject _AK47Equippable = rqAK47Equippable.asset as GameObject;
+            if (!CheckAssetLoaded(_AK47Equippable, "AK47_Equippable", "AK47"))
+            {
+                yield break;
+            }
+
+            AssetBundleRequest request_AK47_Magazine_IntegerItemDefinition = MoreGunsMod.assetBundle.LoadAssetAsync<IntegerItemDefinition>("AK47_Magazine");
+            yield return request_AK47_Magazine_IntegerItemDefinition;
+            IntegerItemDefinition _AK47MagIntItemDef = request_AK47_Magazine_IntegerItemDefinition.asset as IntegerItemDefinition;
+            if (!CheckAssetLoaded(_AK47MagIntItemDef, "AK47_Magazine", "AK47"))
+            {
+                yield break;
+            }
+
+            AssetBundleRequest request_AK47_IntegerItemDefinition = MoreGunsMod.assetBundle.LoadAssetAsync<IntegerItemDefinition>("AK47");
+            yield return request_AK47_IntegerItemDefinition;
+            IntegerItemDefinition _AK47IntItemDef = request_AK47_IntegerItemDefinition.asset as IntegerItemDefinition;
+            if (!CheckAssetLoaded(_AK47IntItemDef, "AK47", "AK47"))
+            {
+                yield break;
+            }
+
+            AssetBundleRequest request_AK47_Magazine_Trash = MoreGunsMod.assetBundle.LoadAssetAsync<GameObject>("assets/resources/weapons/ak47/magazine/AK47_Magazine_Trash.prefab");
+            yield return request_AK47_Magazine_Trash;
+            GameObject _AK47MagTrash = request_AK47_Magazine_Trash.asset as GameObject;
+            if (!CheckAssetLoaded(_AK47MagTrash, "assets/resources/weapons/ak47/magazine/AK47_Magazine_Trash.prefab", "AK47"))
+            {
+                yield break;
+            }
+
+            AssetBundleRequest request_AK47_Prefab = MoreGunsMod.assetBundle.LoadAssetAsync<GameObject>("assets/resources/avatar/equippables/ak47.prefab");
+            yield return request_AK47_Prefab;
+            GameObject _AK47Handgun = request_AK47_Prefab.asset as GameObject;
+            if (!CheckAssetLoaded(_AK47Handgun, "assets/resources/avatar/equippables/ak47.prefab", "AK47"))
+            {
+                yield break;
+            }
+
+            AssetBundleRequest requestAk47MagazineAvatarEquippable = MoreGunsMod.assetBundle.LoadAssetAsync<GameObject>("assets/resources/weapons/ak47/magazine/ak47_magazine_avatarequippable.prefab");
+            yield return requestAk47MagazineAvatarEquippable;
+            GameObject _AK47MagAvatarEquippable = requestAk47MagazineAvatarEquippable.asset as GameObject;
+            if (!CheckAssetLoaded(_AK47MagAvatarEquippable, "assets/resources/weapons/ak47/magazine/ak47_magazine_avatarequippable.prefab", "AK47"))
+            {
+                yield break;
+            }
+
+            GunSettings settings = _AK47Equippable.AddComponent<GunSettings>();
+            settings.isAutomatic = true;
+
+            AK47Equippable = _AK47Equippable;
+            AK47MagazineIntItemDef = _AK47MagIntItemDef;
+            AK47IntItemDef = _AK47IntItemDef;
+            AK47MagTrash = _AK47MagTrash;
+            AK47Handgun = _AK47Handgun;
+            AK47MagAvatarEquippable = _AK47MagAvatarEquippable;
+
+            AK47RangedWeapon = AK47Equippable.GetComponent<Equippable_RangedWeapon>();
+            AK47MagTrashItem = AK47MagTrash.GetComponent<TrashItem>();
+
+            SetCustomItemUI();
+            UpdateSettingsFromConfig();
+            CreateDialogueControllerOptions();
+
+            Resource.RegisterAsset("Avatar/Equippables/AK47", AK47Handgun);
+            Resource.RegisterAsset("Weapons/ak47/Magazine/AK47_Magazine_AvatarEquippable", AK47MagAvatarEquippable);
         }
     }
 }

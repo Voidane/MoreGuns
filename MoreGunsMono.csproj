@@ -74,6 +74,7 @@
     <Compile Include="Patches\SetEquippablePatch.cs" />
     <Compile Include="Patches\SaveLoadManaging.cs" />
     <Compile Include="Patches\StanNPCPatch.cs" />
+    <Compile Include="Patches\TrashRegistryPatch.cs" />
     <Compile Include="Persistence\WeaponsSaveDataController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resource.cs" />

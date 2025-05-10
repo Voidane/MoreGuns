@@ -75,6 +75,7 @@ namespace MoreGunsMono
 
             ak47.SetFilePath(folderPath);
             ak47.SaveToFile();
+            MelonLogger.Msg($"Melon Preferences saved and loaded from: {folderPath}");
         }
     }
 }

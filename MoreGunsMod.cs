@@ -30,71 +30,46 @@ namespace MoreGunsMono
         public static Transform midcanal;
         public static Transform stanNPC;
         public static AssetBundle assetBundle;
+        public static bool isInitialized;
+        public static HarmonyLib.Harmony harmony;
 
         public override void OnInitializeMelon()
         {
-            MelonLogger.Msg("Initialized");
+            MelonLogger.Msg("MoreGuns Is Initializing");
 
             var stream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("MoreGunsMono.voidanesguns");
             if (stream == null)
             {
+                MelonLogger.Error("Could not find manifest resource stream. MoreGuns will not run.");
+                isInitialized = false;
                 return;
             }
 
-            new HarmonyLib.Harmony("com.voidane.moreguns").PatchAll();
+            harmony = new HarmonyLib.Harmony("com.voidane.moreguns");
+            harmony.PatchAll();
+            MelonLogger.Msg("All harmony patches patched.");
+
             assetBundle = AssetBundle.LoadFromStream(stream);
             stream.Close();
             Config.Init();
 
             if (assetBundle != null)
             {
+                isInitialized = true;
                 MelonLogger.Msg("Assetbundle loaded in.");
-                MelonCoroutines.Start(LoadAssetBundleCoroutine());
+                AK47.Init();
             }
             else
             {
-                MelonLogger.Error("Assetbundle was null");
+                MelonLogger.Error("Assetbundle was not loaded in. MoreGuns will not run.");
+                MelonLogger.Warning("All patches were unpatched.");
+                StopProcess();
             }
         }
 
         public override void OnApplicationQuit()
         {
-            
-        }
-
-        private IEnumerator LoadAssetBundleCoroutine()
-        {
-            string[] assetNames = assetBundle.GetAllAssetNames();
-            foreach (string name in assetNames)
-            {
-                MelonLogger.Msg($"Asset in bundle: {name}");
-            }
-
-            AssetBundleRequest request_AK47_Equippable = assetBundle.LoadAssetAsync<GameObject>("AK47_Equippable");
-            yield return request_AK47_Equippable;
-
-            AssetBundleRequest request_AK47_Magazine_IntegerItemDefinition = assetBundle.LoadAssetAsync<IntegerItemDefinition>("AK47_Magazine");
-            yield return request_AK47_Magazine_IntegerItemDefinition;
-
-            AssetBundleRequest request_AK47_IntegerItemDefinition = assetBundle.LoadAssetAsync<IntegerItemDefinition>("AK47");
-            yield return request_AK47_IntegerItemDefinition;
-
-            AssetBundleRequest request_AK47_Magazine_Trash = assetBundle.LoadAssetAsync<GameObject>("assets/resources/weapons/ak47/magazine/AK47_Magazine_Trash.prefab");
-            yield return request_AK47_Magazine_Trash;
-            GameObject ak47MagTrash = request_AK47_Magazine_Trash.asset as GameObject;
-
-            AssetBundleRequest request_AK47_Prefab = assetBundle.LoadAssetAsync<GameObject>("assets/resources/avatar/equippables/ak47.prefab");
-            yield return request_AK47_Prefab;
-            GameObject ak47Prefab = request_AK47_Prefab.asset as GameObject;
-
-            AssetBundleRequest requestAk47MagazineAvatarEquippable = assetBundle.LoadAssetAsync<GameObject>("assets/resources/weapons/ak47/magazine/ak47_magazine_avatarequippable.prefab");
-            yield return requestAk47MagazineAvatarEquippable;
-            GameObject ak47magazineAvatarEquippable = requestAk47MagazineAvatarEquippable.asset as GameObject;
-
-            IntegerItemDefinition ak47MagazineIntegerItemDefinition = request_AK47_Magazine_IntegerItemDefinition.asset as IntegerItemDefinition;
-            IntegerItemDefinition ak47IntegerItemDefinition = request_AK47_IntegerItemDefinition.asset as IntegerItemDefinition;
-
-            AK47.InitializeAK47(request_AK47_Equippable.asset as GameObject, ak47MagazineIntegerItemDefinition, ak47IntegerItemDefinition, ak47MagTrash);
+            harmony.UnpatchSelf();
         }
 
         public override void OnSceneWasLoaded(int buildIndex, string sceneName)
@@ -161,7 +136,7 @@ namespace MoreGunsMono
 
             MelonLogger.Msg("Setting up AK47");
 
-            FixShader(AK47.AK47_Equippable);
+            FixShader(AK47.AK47Equippable);
 
             MelonLogger.Msg($"Added Comp");
         }
@@ -175,6 +150,12 @@ namespace MoreGunsMono
                     mat.shader = Shader.Find(mat.shader.name);
                 }
             }
+        }
+
+        public static void StopProcess()
+        {
+            harmony.UnpatchSelf();
+            isInitialized = false;
         }
     }
 }
