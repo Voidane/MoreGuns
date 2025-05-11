@@ -17,14 +17,17 @@ namespace MoreGunsMono.Patches
 
         public static void Prefix(Registry __instance, string ID)
         {
-            if (!isWeaponsRegistered && AK47.AK47MagazineIntItemDef != null)
+            if (!isWeaponsRegistered)
             {
-                __instance.AddToRegistry(AK47.AK47MagazineIntItemDef);
-                MelonLogger.Msg("Registered ak47mag");
-                __instance.AddToRegistry(AK47.AK47IntItemDef);
-                MelonLogger.Msg("Registered ak47");
-                isWeaponsRegistered = true;
+                foreach (WeaponBase weapon in WeaponBase.allWeapons)
+                {
+                    __instance.AddToRegistry(weapon.magIntItemDef);
+                    MelonLogger.Msg($"Registered {weapon.ID} magazine item def");
+                    __instance.AddToRegistry(weapon.gunIntItemDef);
+                    MelonLogger.Msg($"Registered {weapon.ID} item def");
+                }
             }
+            isWeaponsRegistered = true;
         }
     }
 }

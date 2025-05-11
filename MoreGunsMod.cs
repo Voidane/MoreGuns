@@ -20,6 +20,7 @@ using ScheduleOne;
 using ScheduleOne.Persistence;
 using MoreGunsMono.Patches;
 using VLB;
+using ModManagerPhoneApp;
 
 namespace MoreGunsMono
 {
@@ -51,13 +52,18 @@ namespace MoreGunsMono
 
             assetBundle = AssetBundle.LoadFromStream(stream);
             stream.Close();
-            Config.Init();
 
             if (assetBundle != null)
             {
                 isInitialized = true;
                 MelonLogger.Msg("Assetbundle loaded in.");
-                AK47.Init();
+                new AK47
+                (
+                    "ak47",
+                    new Shopping() { purchasePrice = 15000F, displayName = "AK47", available = true, nonAvailableReason = "" },
+                    new Shopping() { purchasePrice = 1000F, displayName = "AK47 Magazine", available = true, nonAvailableReason = "" }
+                );
+                TryLoadingDependencies();
             }
             else
             {
@@ -72,6 +78,23 @@ namespace MoreGunsMono
             harmony.UnpatchSelf();
         }
 
+        private static void TryLoadingDependencies()
+        {
+            try
+            {
+                MelonLogger.Msg("Subscribing to all guns configuration events to phone manager");
+                foreach (var weapon in WeaponBase.allWeapons)
+                {
+                    weapon.config.OnSettingChanged += weapon.UpdateSettingsFromConfig;
+                    ModSettingsEvents.OnPreferencesSaved += weapon.config.HandleSettingsUpdate;
+                }
+            }
+            catch (Exception ex)
+            {
+                MelonLogger.Warning($"{ex.Message}");
+            }
+        }
+
         public override void OnSceneWasLoaded(int buildIndex, string sceneName)
         {
             if (sceneName == "Main")
@@ -81,11 +104,8 @@ namespace MoreGunsMono
                 MelonCoroutines.Start(GetTransformFromScene(null, "Map", 20.0F, (_MAP) => 
                 {
                     map = _MAP;
-                    MelonLogger.Msg("Found Map");
                     MelonCoroutines.Start(GetTransformFromScene(null, "Container", 5.0F, (_container) =>
                     {
-                        MelonLogger.Msg("Found container");
-                        MelonCoroutines.Start(SpawnGunWhenPlayerReady());
                     }));
                 }));
             }
@@ -122,34 +142,6 @@ namespace MoreGunsMono
             }
 
             yield return target;
-        }
-
-        private IEnumerator SpawnGunWhenPlayerReady()
-        {
-            while (Player.Local == null)
-            {
-                MelonLogger.Msg("Waiting for player to initialize...");
-                yield return new WaitForSeconds(0.5f);
-            }
-
-            yield return null;
-
-            MelonLogger.Msg("Setting up AK47");
-
-            FixShader(AK47.AK47Equippable);
-
-            MelonLogger.Msg($"Added Comp");
-        }
-
-        public static void FixShader(GameObject target)
-        {
-            foreach (MeshRenderer render in target.GetComponentsInChildren<MeshRenderer>(true))
-            {
-                foreach (Material mat in render.sharedMaterials)
-                {
-                    mat.shader = Shader.Find(mat.shader.name);
-                }
-            }
         }
 
         public static void StopProcess()

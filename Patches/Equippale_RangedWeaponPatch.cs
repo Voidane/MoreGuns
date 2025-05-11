@@ -29,7 +29,6 @@ namespace MoreGunsMono.Patches
                 return;
 
             // MelonLogger.Msg("UpdateInputPostfix patch running");
-
             if (__instance.gameObject.TryGetComponent<GunSettings>(out GunSettings settings))
             {
                 // MelonLogger.Msg("Gun has settings");
