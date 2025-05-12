@@ -14,6 +14,7 @@
           "Il2CppInterop.Runtime": "1.4.6.0",
           "Il2Cppmscorlib": "4.0.0.0",
           "MelonLoader": "0.7.0.0",
+          "ModManager&PhoneApp": "1.0.0.0",
           "UnityEngine.CoreModule": "0.0.0.0",
           "UnityEngine.Il2CppAssetBundleManager": "0.7.0.0"
         },
@@ -66,6 +67,14 @@
           "MelonLoader.dll": {
             "assemblyVersion": "0.7.0.0",
             "fileVersion": "0.7.0.0"
+          }
+        }
+      },
+      "ModManager&PhoneApp/1.0.0.0": {
+        "runtime": {
+          "ModManager&PhoneApp.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -317,6 +326,14 @@
           }
         }
       },
+      "UnityEngine.UnityWebRequestWWWModule/0.0.0.0": {
+        "runtime": {
+          "UnityEngine.UnityWebRequestWWWModule.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "Il2CppInterop.Common/1.4.6.0": {
         "runtime": {
           "Il2CppInterop.Common.dll": {
@@ -477,6 +494,14 @@
           }
         }
       },
+      "UnityEngine.ImageConversionModule/0.0.0.0": {
+        "runtime": {
+          "UnityEngine.ImageConversionModule.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "UnityEngine.TextRenderingModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.TextRenderingModule.dll": {
@@ -605,6 +630,14 @@
           }
         }
       },
+      "UnityEngine.AssetBundleModule/0.0.0.0": {
+        "runtime": {
+          "UnityEngine.AssetBundleModule.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "WebSocketDotNet/1.0.0.0": {
         "runtime": {
           "WebSocketDotNet.dll": {
@@ -687,6 +720,11 @@
       "sha512": ""
     },
     "MelonLoader/0.7.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ModManager&PhoneApp/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -846,6 +884,11 @@
       "serviceable": false,
       "sha512": ""
     },
+    "UnityEngine.UnityWebRequestWWWModule/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Il2CppInterop.Common/1.4.6.0": {
       "type": "reference",
       "serviceable": false,
@@ -946,6 +989,11 @@
       "serviceable": false,
       "sha512": ""
     },
+    "UnityEngine.ImageConversionModule/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "UnityEngine.TextRenderingModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -1022,6 +1070,11 @@
       "sha512": ""
     },
     "Il2CppSystem.Configuration/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UnityEngine.AssetBundleModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

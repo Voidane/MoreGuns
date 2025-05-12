@@ -27,7 +27,7 @@ namespace MoreGuns.Patches
 
         public static IEnumerator InitializeStore(Stan __instance)
         {
-            while (!RegistryPatch.isWeaponsRegistered)
+            while (!ItemRegistryPatch.isWeaponsRegistered)
             {
                 MelonLogger.Msg("Attempting to setup stan store, waiting on registries!");
                 yield return new WaitForSeconds(0.5F);
@@ -65,28 +65,36 @@ namespace MoreGuns.Patches
             var allWeapons = dialogueController_ArmsDealer.allWeapons;
             if (allWeapons != null)
             {
-                if (!allWeapons.Contains(AK47.rangedAK47))
+                foreach (WeaponBase weapon in WeaponBase.allWeapons)
                 {
-                    allWeapons.Add(AK47.rangedAK47);
+                    if (!allWeapons.Contains(weapon.rangedGun))
+                    {
+                        allWeapons.Add(weapon.rangedGun);
+                    }
+
+                    if (!allWeapons.Contains(weapon.ammoGun))
+                    {
+                        allWeapons.Add(weapon.ammoGun);
+                    }
+                    MelonLogger.Msg($"[MoreGuns] Loaded {weapon.ID} to the store!");
                 }
-                if (!allWeapons.Contains(AK47.ammoAK47))
-                {
-                    allWeapons.Add(AK47.ammoAK47);
-                }
-                MelonLogger.Msg("Added new guns to store!");
+                MelonLogger.Msg("[MoreGuns] Finished adding new guns to store!");
             }
             else
             {
-                MelonLogger.Error("all weapons were null, couldnt add guns to store");
+                MelonLogger.Error("[MoreGuns] All weapons was null");
             }
 
-            if (!dialogueController_ArmsDealer.RangedWeapons.Contains(AK47.rangedAK47))
+            foreach (WeaponBase weapon in WeaponBase.allWeapons)
             {
-                dialogueController_ArmsDealer.RangedWeapons.Add(AK47.rangedAK47);
-            }
-            if (!dialogueController_ArmsDealer.Ammo.Contains(AK47.ammoAK47))
-            {
-                dialogueController_ArmsDealer.Ammo.Add(AK47.ammoAK47);
+                if (!dialogueController_ArmsDealer.RangedWeapons.Contains(weapon.rangedGun))
+                {
+                    dialogueController_ArmsDealer.RangedWeapons.Add(weapon.rangedGun);
+                }
+                if (!dialogueController_ArmsDealer.Ammo.Contains(weapon.ammoGun))
+                {
+                    dialogueController_ArmsDealer.Ammo.Add(weapon.ammoGun);
+                }
             }
         }
     }

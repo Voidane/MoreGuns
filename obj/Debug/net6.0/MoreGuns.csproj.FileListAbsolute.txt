@@ -94,3 +94,7 @@ C:\Users\Austin\source\repos\MoreGuns\MoreGuns\obj\Debug\net6.0\MoreGuns.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\obj\Debug\net6.0\refint\MoreGuns.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\obj\Debug\net6.0\MoreGuns.pdb
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\obj\Debug\net6.0\ref\MoreGuns.dll
+C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\ModManager&PhoneApp.dll
+C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.UnityWebRequestWWWModule.dll
+C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.ImageConversionModule.dll
+C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.AssetBundleModule.dll
