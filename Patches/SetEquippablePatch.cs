@@ -28,12 +28,7 @@ namespace MoreGuns.Patches
             UnityEngine.Object il2cppResourceAsset = Resources.Load(assetPath);
             if (il2cppResourceAsset != null)
             {
-                MelonLogger.Msg($"{assetPath} asset was loaded.");
                 return true;
-            }
-            else
-            {
-                MelonLogger.Msg($"{assetPath} Custom Asset Selected.");
             }
 
             if (__instance.CurrentEquippable != null)
@@ -44,7 +39,7 @@ namespace MoreGuns.Patches
             UnityEngine.Object UEObjectAsset = MoreGunsMod.TryGetAsset(assetPath);
             if (UEObjectAsset == null)
             {
-                MelonLogger.Warning("Could not find custom asset.");
+                MelonLogger.Warning($"Could not find custom asset. {assetPath}");
                 return true;
             }
             

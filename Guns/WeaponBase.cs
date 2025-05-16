@@ -105,27 +105,23 @@ namespace MoreGuns.Guns
                 yield break;
             }
 
-            MelonLogger.Msg("settings;");
             GunSettings settings = _GunEquippable.AddComponent<GunSettings>();
             settings.isAutomatic.Value = true;
 
-            MelonLogger.Msg("assinging");
             gunEquippable = _GunEquippable;
             magIntItemDef = _MagIntItemDef;
             gunIntItemDef = _GunIntItemDef;
             gunMagTrash = _GunMagTrash;
             magAvatarEquippable = _GunMagAvatarEquippable;
+            gunHandgun = _GunHandGun;
 
-            MelonLogger.Msg("getting comps");
             gunRangedWeapon = gunEquippable.GetComponent<Equippable_RangedWeapon>();
             gunMagTrashItem = gunMagTrash.GetComponent<TrashItem>();
 
-            MelonLogger.Msg("methods");
             CreateConfig();
             SetCustomItemUI();
             UpdateSettingsFromConfig();
 
-            MelonLogger.Msg("resources");
             MoreGunsMod.RegisterAsset($"Avatar/Equippables/{ID.ToUpper()}", gunHandgun);
             MoreGunsMod.RegisterAsset($"Weapons/ak47/Magazine/{ID.ToUpper()}_Magazine_AvatarEquippable", magAvatarEquippable);
 
@@ -156,16 +152,25 @@ namespace MoreGuns.Guns
 
         private void SetCustomItemUI()
         {
-            var defintion = Resources.Load("Weapons/M1911/M1911") as ItemDefinition;
+            UnityEngine.Object definition = Resources.Load("Weapons/M1911/M1911");
 
-            if (defintion == null)
+            if (definition == null)
             {
-                MelonLogger.Error("m1911 couldnt be loaded? Unable to register UI to custom guns!");
+                MelonLogger.Error("Cast to ItemDefinition failed - type mismatch in IL2CPP");
+                return;
+            }
+
+            var il2cppDefinition = definition.Cast<ItemDefinition>();
+
+            if (il2cppDefinition != null)
+            {
+                gunIntItemDef.CustomItemUI = il2cppDefinition.CustomItemUI;
+                magIntItemDef.CustomItemUI = il2cppDefinition.CustomItemUI;
+                MelonLogger.Msg("Successfully set CustomItemUI using IL2CPP conversion");
             }
             else
             {
-                gunIntItemDef.CustomItemUI = defintion.CustomItemUI;
-                magIntItemDef.CustomItemUI = defintion.CustomItemUI;
+                MelonLogger.Error("IL2CPP conversion failed");
             }
         }
 
