@@ -107,4 +107,83 @@ namespace MoreGunsMono
             OnSettingChanged?.Invoke();
         }
     }
+
+    [Serializable]
+    public class GunConfigData
+    {
+        public string ID;
+        public float Damage;
+        public float ImpactForce;
+        public float AimFOVReduction;
+        public float AccuracyChangeDuration;
+        public int MagazineSize;
+        public string DisplayItemName;
+        public string DisplayDescription;
+        public Color LabelDisplayColor;
+        public ELegalStatus LegalStatus;
+        public FullRank RequiredRank;
+        public string MagDisplayItemName;
+        public string MagDisplayDescription;
+        public Color MagLabelDisplayColor;
+        public ELegalStatus MagLegalStatus;
+        public FullRank MagRequiredRank;
+        public float PurchasePrice;
+        public float MagPurchasePrice;
+        public string ItemName;
+        public string MagItemName;
+        public bool Available;
+        public bool MagAvailable;
+        public string AvailableReason;
+        public string MagAvailableReason;
+
+        public string ToJson()
+        {
+            return JsonUtility.ToJson(this);
+        }
+
+        public static GunConfigData FromJson(string json)
+        {
+            try
+            {
+                return JsonUtility.FromJson<GunConfigData>(json);
+            }
+            catch (Exception ex)
+            {
+                MelonLogger.Error($"Failed to parse gun config data: {ex.Message}");
+                return null;
+            }
+        }
+
+        public static GunConfigData FromConfig(GunConfiguration config)
+        {
+            GunConfigData data = new GunConfigData
+            {
+                ID = config.ID,
+                Damage = config.Damage.Value,
+                ImpactForce = config.ImpactForce.Value,
+                AimFOVReduction = config.AimFOVReduction.Value,
+                AccuracyChangeDuration = config.AccuracyChangeDuration.Value,
+                MagazineSize = config.MagazineSize.Value,
+                DisplayItemName = config.DisplayItemName.Value,
+                DisplayDescription = config.DisplayDescription.Value,
+                LabelDisplayColor = config.LabelDisplayColor.Value,
+                LegalStatus = config.LegalStatus.Value,
+                RequiredRank = config.RequiredRank.Value,
+                MagDisplayItemName = config.MagDisplayItemName.Value,
+                MagDisplayDescription = config.MagDisplayDescription.Value,
+                MagLabelDisplayColor = config.MagLabelDisplayColor.Value,
+                MagLegalStatus = config.MagLegalStatus.Value,
+                MagRequiredRank = config.MagRequiredRank.Value,
+                PurchasePrice = config.PurchasePrice.Value,
+                MagPurchasePrice = config.MagPurchasePrice.Value,
+                ItemName = config.ItemName.Value,
+                MagItemName = config.MagItemName.Value,
+                Available = config.Available.Value,
+                MagAvailable = config.MagAvailable.Value,
+                AvailableReason = config.AvailableReason.Value,
+                MagAvailableReason = config.MagAvailableReason.Value
+            };
+            return data;
+        }
+    }
 }

@@ -14,9 +14,9 @@ namespace MoreGunsMono.Patches
     [HarmonyPatch]
     public static class SetEquippablePatch
     {
-        [HarmonyPatch(typeof(Avatar), nameof(Avatar.SetEquippable))]
+        [HarmonyPatch(typeof(ScheduleOne.AvatarFramework.Avatar), nameof(ScheduleOne.AvatarFramework.Avatar.SetEquippable))]
         [HarmonyPrefix]
-        public static bool Prefix(ref AvatarEquippable __result, string assetPath, Avatar __instance)
+        public static bool Prefix(ref AvatarEquippable __result, string assetPath, ScheduleOne.AvatarFramework.Avatar __instance)
         {
             GameObject gameObject = Resources.Load(assetPath) as GameObject;
             if (gameObject != null)
@@ -48,7 +48,7 @@ namespace MoreGunsMono.Patches
                 MelonLogger.Msg("avatar equip was null");
             }
 
-            AccessTools.Property(typeof(Avatar), "CurrentEquippable").SetValue(__instance, avatarEquippable);
+            AccessTools.Property(typeof(ScheduleOne.AvatarFramework.Avatar), "CurrentEquippable").SetValue(__instance, avatarEquippable);
 
             avatarEquippable.Equip(__instance);
             __result = avatarEquippable;

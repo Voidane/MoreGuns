@@ -33,37 +33,23 @@ namespace MoreGunsMono.Patches
                 yield return new WaitForSeconds(0.5F);
             }
             
-            MelonLogger.Msg("Registries finished. Loading stan dialogue");
-
             if (MoreGunsMod.stanNPC != null)
                 yield return false;
 
             MoreGunsMod.stanNPC = GameObject.Find("Stan/Dialogue").transform;
-
-            if (MoreGunsMod.stanNPC != null)
-            {
-                MelonLogger.Msg("stan dialogue finished loading.");
-            }
-            else
+            if (MoreGunsMod.stanNPC == null)
             {
                 MelonLogger.Msg("stan dialogue was not loaded in");
             }
 
             DialogueController_ArmsDealer dialogueController_ArmsDealer = MoreGunsMod.stanNPC.GetComponent<DialogueController_ArmsDealer>();
-
-            if (dialogueController_ArmsDealer != null)
-            {
-                MelonLogger.Msg("Dialogue comp found");
-            }
-            else
+            if (dialogueController_ArmsDealer == null)
             {
                 MelonLogger.Error("Dialogue comp not found");
             }
 
             var allWeaponsFields = typeof(DialogueController_ArmsDealer).GetField("allWeapons", 
                 System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-
-
 
             if (allWeaponsFields != null)
             {
@@ -89,8 +75,6 @@ namespace MoreGunsMono.Patches
                 {
                     MelonLogger.Error("[MoreGuns] All weapons was null");
                 }
-
-                var rangedWeapons = allWeaponsFields.GetValue(dialogueController_ArmsDealer) as List<DialogueController_ArmsDealer.WeaponOption>;
             }
             else
             {

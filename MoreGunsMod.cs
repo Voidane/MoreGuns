@@ -21,6 +21,8 @@ using ScheduleOne.Persistence;
 using MoreGunsMono.Patches;
 using VLB;
 using ModManagerPhoneApp;
+using Steamworks;
+using MoreGunsMono.Sync;
 
 namespace MoreGunsMono
 {
@@ -57,12 +59,14 @@ namespace MoreGunsMono
             {
                 isInitialized = true;
                 MelonLogger.Msg("Assetbundle loaded in.");
+                
                 new AK47
                 (
                     "ak47",
                     new Shopping() { purchasePrice = 15000F, displayName = "AK47", available = true, nonAvailableReason = "" },
                     new Shopping() { purchasePrice = 1000F, displayName = "AK47 Magazine", available = true, nonAvailableReason = "" }
                 );
+
                 TryLoadingDependencies();
             }
             else
@@ -85,7 +89,7 @@ namespace MoreGunsMono
                 MelonLogger.Msg("Subscribing to all guns configuration events to phone manager");
                 foreach (var weapon in WeaponBase.allWeapons)
                 {
-                    weapon.config.OnSettingChanged += weapon.UpdateSettingsFromConfig;
+                    weapon.config.OnSettingChanged += weapon.ApplySettingsFromConfig;
                     ModSettingsEvents.OnPreferencesSaved += weapon.config.HandleSettingsUpdate;
                 }
             }
@@ -99,49 +103,12 @@ namespace MoreGunsMono
         {
             if (sceneName == "Main")
             {
-                MelonLogger.Msg("Main scene loaded!");
-
-                MelonCoroutines.Start(GetTransformFromScene(null, "Map", 20.0F, (_MAP) => 
-                {
-                    map = _MAP;
-                    MelonCoroutines.Start(GetTransformFromScene(null, "Container", 5.0F, (_container) =>
-                    {
-                    }));
-                }));
+                NetworkController.SyncConfiguration();
             }
             else
             {
                 ItemRegistryPatch.isWeaponsRegistered = false;
             }
-        }
-
-        private IEnumerator GetTransformFromScene(Transform parent, string name, float timeoutLimit, Action<Transform> onComplete)
-        {
-            Transform target = null;
-            float timeOutCounter = 0F;
-            int attempt = 0;
-
-            while (target == null && timeOutCounter < timeoutLimit)
-            {
-                target = (parent == null) ? GameObject.Find(name).transform : parent.Find(name);
-                if (target == null)
-                {
-                    timeOutCounter += 0.5F;
-                    yield return new WaitForSeconds(0.5F);
-                }
-            }
-
-            if (target != null)
-            {
-                onComplete?.Invoke(target);
-            }
-            else
-            {
-                MelonLogger.Error("Failed to find target object within timeout period!");
-                onComplete?.Invoke(null);
-            }
-
-            yield return target;
         }
 
         public static void StopProcess()
