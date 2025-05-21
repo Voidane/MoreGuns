@@ -6,10 +6,11 @@ using ModManagerPhoneApp;
 using MoreGuns;
 using MoreGuns.Guns;
 using MoreGuns.Patches;
+using MoreGuns.Sync;
 using System.Collections;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(MoreGunsMod), "MoreGuns", "1.0.0", "Voidane")]
+[assembly: MelonInfo(typeof(MoreGunsMod), "MoreGuns", "1.2.0", "Voidane")]
 [assembly: MelonGame("TVGS", "Schedule I")]
 
 namespace MoreGuns
@@ -70,7 +71,7 @@ namespace MoreGuns
                 MelonLogger.Msg("Subscribing to all guns configuration events to phone manager");
                 foreach (var weapon in WeaponBase.allWeapons)
                 {
-                    weapon.config.OnSettingChanged += weapon.UpdateSettingsFromConfig;
+                    weapon.config.OnSettingChanged += weapon.ApplySettingsFromConfig;
                     ModSettingsEvents.OnPreferencesSaved += weapon.config.HandleSettingsUpdate;
                 }
             }
@@ -84,47 +85,12 @@ namespace MoreGuns
         {
             if (sceneName == "Main")
             {
-                MelonCoroutines.Start(GetTransformFromScene(null, "Map", 20.0F, (_MAP) =>
-                {
-                    map = _MAP;
-                    MelonCoroutines.Start(GetTransformFromScene(null, "Container", 5.0F, (_container) =>
-                    {
-                    }));
-                }));
+                NetworkController.SyncConfiguration();
             }
             else
             {
                 ItemRegistryPatch.isWeaponsRegistered = false;
             }
-        }
-
-        private IEnumerator GetTransformFromScene(Transform parent, string name, float timeoutLimit, Action<Transform> onComplete)
-        {
-            Transform target = null;
-            float timeOutCounter = 0F;
-            int attempt = 0;
-
-            while (target == null && timeOutCounter < timeoutLimit)
-            {
-                target = (parent == null) ? GameObject.Find(name).transform : parent.Find(name);
-                if (target == null)
-                {
-                    timeOutCounter += 0.5F;
-                    yield return new WaitForSeconds(0.5F);
-                }
-            }
-
-            if (target != null)
-            {
-                onComplete?.Invoke(target);
-            }
-            else
-            {
-                MelonLogger.Error("Failed to find target object within timeout period!");
-                onComplete?.Invoke(null);
-            }
-
-            yield return target;
         }
 
         public static void RegisterAsset(string path, UnityEngine.Object asset)

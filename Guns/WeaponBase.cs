@@ -31,13 +31,17 @@ namespace MoreGuns.Guns
 
         public GameObject gunMagTrash;
         public TrashItem gunMagTrashItem;
+        public Dictionary<string, AnimationClip> animations = new Dictionary<string, AnimationClip>();
 
         public GunConfiguration config;
 
         public Shopping gunShop;
         public Shopping magShop;
 
+        public bool IsConfigurationFinished { get; private set; }
+
         public static List<WeaponBase> allWeapons = new List<WeaponBase>();
+        public static Dictionary<string, WeaponBase> weaponsByName = new Dictionary<string, WeaponBase>();
 
         public void Init(string ID, Shopping gunShop, Shopping magShop)
         {
@@ -120,12 +124,14 @@ namespace MoreGuns.Guns
 
             CreateConfig();
             SetCustomItemUI();
-            UpdateSettingsFromConfig();
+            LoadAnimations();
 
             MoreGunsMod.RegisterAsset($"Avatar/Equippables/{ID.ToUpper()}", gunHandgun);
             MoreGunsMod.RegisterAsset($"Weapons/ak47/Magazine/{ID.ToUpper()}_Magazine_AvatarEquippable", magAvatarEquippable);
 
             allWeapons.Add(this);
+            weaponsByName.Add($"{ID}", this);
+
             MelonLogger.Msg($"Finished Initializing {ID}");
         }
 
@@ -174,7 +180,7 @@ namespace MoreGuns.Guns
             }
         }
 
-        public void UpdateSettingsFromConfig()
+        public void ApplySettingsFromConfig()
         {
             gunRangedWeapon.Damage = config.Damage.Value;
             gunRangedWeapon.ImpactForce = config.ImpactForce.Value;
@@ -216,6 +222,34 @@ namespace MoreGuns.Guns
                 NotAvailableReason = config.MagAvailableReason.Value,
                 Item = magIntItemDef
             };
+
+            IsConfigurationFinished = true;
+        }
+
+        private void LoadAnimations()
+        {
+            Equippable_RangedWeapon equipWeapon = (Equippable_RangedWeapon) gunIntItemDef.Equippable;
+            RuntimeAnimatorController animatorController = equipWeapon.AnimatorController;
+
+            foreach (AnimationClip anim in animatorController.animationClips)
+            {
+                MelonLogger.Msg($"Animation: {anim.name}");
+                if (anim.name.Contains("Idle"))
+                {
+                    animations.Add("BothHands_Grip_Lowered", anim);
+                }
+                if (anim.name.Contains("Aiming"))
+                {
+                    animations.Add("BothHands_Grip_Raised", anim);
+                }
+                if (anim.name.Contains("Fire"))
+                {
+                    if (!animations.ContainsKey("BothHands_Grip_Recoil"))
+                    {
+                        animations.Add("BothHands_Grip_Recoil", anim);
+                    }
+                }
+            }
         }
     }
 }

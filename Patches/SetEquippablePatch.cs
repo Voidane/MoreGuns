@@ -15,9 +15,9 @@ namespace MoreGuns.Patches
     [HarmonyPatch]
     public static class SetEquippablePatch
     {
-        [HarmonyPatch(typeof(Avatar), nameof(Avatar.SetEquippable))]
+        [HarmonyPatch(typeof(Il2CppScheduleOne.AvatarFramework.Avatar), nameof(Il2CppScheduleOne.AvatarFramework.Avatar.SetEquippable))]
         [HarmonyPrefix]
-        public static bool Prefix(ref AvatarEquippable __result, string assetPath, Avatar __instance)
+        public static bool Prefix(ref AvatarEquippable __result, string assetPath, Il2CppScheduleOne.AvatarFramework.Avatar __instance)
         {
             // Paths may be null or empty, if so return to original method
             if (string.IsNullOrEmpty(assetPath.Trim()))

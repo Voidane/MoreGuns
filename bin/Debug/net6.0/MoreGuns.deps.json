@@ -10,11 +10,13 @@
         "dependencies": {
           "0Harmony": "2.10.2.0",
           "Assembly-CSharp": "0.0.0.0",
+          "Il2Cppcom.rlabrecque.steamworks.net": "0.0.0.0",
           "Il2CppFishNet.Runtime": "0.0.0.0",
           "Il2CppInterop.Runtime": "1.4.6.0",
           "Il2Cppmscorlib": "4.0.0.0",
           "MelonLoader": "0.7.0.0",
           "ModManager&PhoneApp": "1.0.0.0",
+          "UnityEngine.AnimationModule": "0.0.0.0",
           "UnityEngine.CoreModule": "0.0.0.0",
           "UnityEngine.Il2CppAssetBundleManager": "0.7.0.0"
         },
@@ -33,6 +35,14 @@
       "Assembly-CSharp/0.0.0.0": {
         "runtime": {
           "Assembly-CSharp.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Il2Cppcom.rlabrecque.steamworks.net/0.0.0.0": {
+        "runtime": {
+          "Il2Cppcom.rlabrecque.steamworks.net.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
@@ -78,6 +88,14 @@
           }
         }
       },
+      "UnityEngine.AnimationModule/0.0.0.0": {
+        "runtime": {
+          "UnityEngine.AnimationModule.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "UnityEngine.CoreModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.CoreModule.dll": {
@@ -118,25 +136,9 @@
           }
         }
       },
-      "UnityEngine.AnimationModule/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.AnimationModule.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
       "UnityEngine.IMGUIModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.IMGUIModule.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "Il2Cppcom.rlabrecque.steamworks.net/0.0.0.0": {
-        "runtime": {
-          "Il2Cppcom.rlabrecque.steamworks.net.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
@@ -704,6 +706,11 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Il2Cppcom.rlabrecque.steamworks.net/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Il2CppFishNet.Runtime/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -725,6 +732,11 @@
       "sha512": ""
     },
     "ModManager&PhoneApp/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UnityEngine.AnimationModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -754,17 +766,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "UnityEngine.AnimationModule/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
     "UnityEngine.IMGUIModule/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Il2Cppcom.rlabrecque.steamworks.net/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

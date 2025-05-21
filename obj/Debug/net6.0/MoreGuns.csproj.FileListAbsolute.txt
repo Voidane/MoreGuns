@@ -8,12 +8,12 @@ C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Il2CppInterop.Ru
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Il2Cppmscorlib.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\MelonLoader.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\ModManager&PhoneApp.dll
+C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.AnimationModule.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.CoreModule.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.Il2CppAssetBundleManager.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Mono.Cecil.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.PhysicsModule.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.Physics2DModule.dll
-C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.AnimationModule.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.IMGUIModule.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Il2Cppcom.rlabrecque.steamworks.net.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Unity.TextMeshPro.dll
