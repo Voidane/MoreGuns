@@ -10,5 +10,6 @@ namespace MoreGunsMono.Guns
     class GunSettings : MonoBehaviour
     {
         public bool isAutomatic;
+        public float walkSpeedMultiplier = 1.0F;
     }
 }

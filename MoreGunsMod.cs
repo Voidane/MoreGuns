@@ -23,6 +23,7 @@ using VLB;
 using ModManagerPhoneApp;
 using Steamworks;
 using MoreGunsMono.Sync;
+using MoreGunsMono.Gui;
 
 namespace MoreGunsMono
 {
@@ -39,6 +40,7 @@ namespace MoreGunsMono
         public override void OnInitializeMelon()
         {
             MelonLogger.Msg("MoreGuns Is Initializing");
+            MelonLogger.Msg("Thank you for using More Guns! Discord: discord.gg/XB7ruKtJje");
 
             var stream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("MoreGunsMono.voidanesguns");
             if (stream == null)
@@ -59,7 +61,9 @@ namespace MoreGunsMono
             {
                 isInitialized = true;
                 MelonLogger.Msg("Assetbundle loaded in.");
-                
+
+                Config.Initialize();
+
                 new AK47
                 (
                     "ak47",
@@ -104,6 +108,7 @@ namespace MoreGunsMono
             if (sceneName == "Main")
             {
                 NetworkController.SyncConfiguration();
+                Reticle.Initialize();
             }
             else
             {

@@ -83,6 +83,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config.cs" />
+    <Compile Include="Gui\Reticle.cs" />
     <Compile Include="GunConfiguration.cs" />
     <Compile Include="Guns\AK47.cs" />
     <Compile Include="Guns\GunSettings.cs" />
@@ -90,12 +92,11 @@
     <Compile Include="MoreGunsMod.cs" />
     <Compile Include="Patches\Equippale_RangedWeaponPatch.cs" />
     <Compile Include="Patches\ItemRegistryPatch.cs" />
+    <Compile Include="Patches\RangedWeaponEquipPatch.cs" />
     <Compile Include="Patches\SetAnimationPatch.cs" />
     <Compile Include="Patches\SetEquippablePatch.cs" />
-    <Compile Include="Patches\SaveLoadManaging.cs" />
     <Compile Include="Patches\StanNPCPatch.cs" />
     <Compile Include="Patches\TrashRegistryPatch.cs" />
-    <Compile Include="Persistence\WeaponsSaveDataController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resource.cs" />
     <Compile Include="Shopping.cs" />

@@ -21,6 +21,9 @@ namespace MoreGunsMono.Sync
         public static bool IsSynced { get; private set; } = false;
         public static StringBuilder payload;
 
+        public static bool forceHost = false;
+        public static bool forceClient = false;
+
         public static void SyncConfiguration()
         {
             bool isHost = Lobby.Instance?.IsHost == true;
@@ -31,13 +34,16 @@ namespace MoreGunsMono.Sync
             payload = new StringBuilder();
             payload.Append($"{IDENTIFICATION_PREFIX}_{version}|");
 
-            if (isHost)
+            if ((isHost && !forceClient) || forceHost)
             {
-                MelonLogger.Msg($"Host player");
+                MelonLogger.Msg($"Host loaded!");
                 MelonCoroutines.Start(SyncHostToLobbyPayload());
+
+                MelonLogger.Msg("Attempting to send payload");
                 Lobby.Instance.SetLobbyData("MoreGunsConfig", payload.ToString());
+                MelonLogger.Msg($"Sent payload to netowkrk: {payload.ToString()}");
             }
-            else if (isClient)
+            else if ((isClient && !forceHost) || forceClient)
             {
                 MelonLogger.Msg("Client loaded!");
                 MelonCoroutines.Start(WaitOnLobbyPayload());
@@ -48,8 +54,8 @@ namespace MoreGunsMono.Sync
                 foreach (var weapon in WeaponBase.allWeapons)
                 {
                     weapon.ApplySettingsFromConfig();
-                    MelonCoroutines.Start(SyncHostToLobbyPayload());
                 }
+                MelonCoroutines.Start(SyncHostToLobbyPayload());
             }
         }
 
@@ -57,12 +63,17 @@ namespace MoreGunsMono.Sync
         {
             while (true)
             {
+                MelonLogger.Msg("Getting lobby info");
                 string data = SteamMatchmaking.GetLobbyData(Lobby.Instance.LobbySteamID, "MoreGunsConfig");
+                MelonLogger.Msg($"Lobby data fetched: {data}");
+
                 if (!string.IsNullOrEmpty(data))
                 {
+                    MelonLogger.Msg($"payload: {payload.ToString()}");
                     HostToClientConfigurationSync(data);
                     yield break;
                 }
+
                 MelonLogger.Msg("Waiting for payload.");
                 yield return new WaitForSeconds(1F);
             }
@@ -138,7 +149,7 @@ namespace MoreGunsMono.Sync
                     if (!float.TryParse(fields[3], out float gunRangedAimFOVReduction)) continue;
                     if (!float.TryParse(fields[4], out float gunRangedAccuracyChangeDuration)) continue;
                     if (!int.TryParse(fields[5], out int gunRangedMagazineSize)) continue;
-                    
+
                     string gunIIDName = fields[6];
                     string gunIIDDescription = fields[7];
                     Color gunIIDLabelDisplayColor = Tools.Color.StringRGBAToColor(fields[8]);

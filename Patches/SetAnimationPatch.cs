@@ -17,6 +17,8 @@ namespace MoreGunsMono.Patches
     [HarmonyPatch]
     public static class SetAnimationPatch
     {
+        /**
+
         // Store original animations to restore them later
         private static Dictionary<int, Dictionary<string, AnimationClip>> originalAnimations = new Dictionary<int, Dictionary<string, AnimationClip>>();
 
@@ -57,17 +59,6 @@ namespace MoreGunsMono.Patches
             CleanupAnimator(animatorId);
         }
 
-        **/
-
-        private static void CleanupAnimator(int animatorId)
-        {
-            lock (dictionaryLock)
-            {
-                originalAnimations.Remove(animatorId);
-                cachedOverrideControllers.Remove(animatorId);
-                activeAnimatorIds.Remove(animatorId);
-            }
-        }
 
         [HarmonyPatch(typeof(AvatarEquippable), "SetTrigger")]
         [HarmonyPostfix]
@@ -257,5 +248,17 @@ namespace MoreGunsMono.Patches
                 }
             }
         }
+
+        private static void CleanupAnimator(int animatorId)
+        {
+            lock (dictionaryLock)
+            {
+                originalAnimations.Remove(animatorId);
+                cachedOverrideControllers.Remove(animatorId);
+                activeAnimatorIds.Remove(animatorId);
+            }
+        }
+
+        **/
     }
 }

@@ -180,6 +180,7 @@ namespace MoreGunsMono.Guns
             CreateConfig();
             SetCustomItemUI();
             LoadAnimations();
+            ApplySettingsFromConfig();
 
             Resource.RegisterAsset($"Avatar/Equippables/{ID.ToUpper()}", gunHandgun);
             Resource.RegisterAsset($"Weapons/ak47/Magazine/{ID.ToUpper()}_Magazine_AvatarEquippable", magAvatarEquippable);
