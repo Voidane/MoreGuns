@@ -21,7 +21,6 @@ namespace MoreGuns.Patches
         [HarmonyPatch(typeof(Stan), "Loaded")]
         public static void Postfix(Stan __instance)
         {
-            MelonLogger.Msg("Stan Loaded in");
             MelonCoroutines.Start(InitializeStore(__instance));
         }
 
@@ -33,19 +32,12 @@ namespace MoreGuns.Patches
                 yield return new WaitForSeconds(0.5F);
             }
 
-            MelonLogger.Msg("Registries finished. Loading stan dialogue");
-
             if (MoreGunsMod.stanNPC != null)
                 yield return null;
 
             MoreGunsMod.stanNPC = GameObject.Find("Stan/Dialogue").transform;
 
-            if (MoreGunsMod.stanNPC != null)
-            {
-                MelonLogger.Msg("stan dialogue finished loading.");
-
-            }
-            else
+            if (MoreGunsMod.stanNPC == null)
             {
                 MelonLogger.Msg("stan dialogue was not loaded in");
                 yield return null;
@@ -53,11 +45,7 @@ namespace MoreGuns.Patches
 
             DialogueController_ArmsDealer dialogueController_ArmsDealer = MoreGunsMod.stanNPC.GetComponent<DialogueController_ArmsDealer>();
 
-            if (dialogueController_ArmsDealer != null)
-            {
-                MelonLogger.Msg("Dialogue comp found");
-            }
-            else
+            if (dialogueController_ArmsDealer == null)
             {
                 MelonLogger.Error("Dialogue comp not found");
             }

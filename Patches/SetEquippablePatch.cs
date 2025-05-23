@@ -68,7 +68,6 @@ namespace MoreGuns.Patches
             avatarEquippable.Equip(__instance);
             __result = avatarEquippable;
 
-            MelonLogger.Msg($"Finished loading asset on equip.");
             return false;
         }
     }

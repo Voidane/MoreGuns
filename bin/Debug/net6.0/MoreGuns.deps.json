@@ -18,7 +18,8 @@
           "ModManager&PhoneApp": "1.0.0.0",
           "UnityEngine.AnimationModule": "0.0.0.0",
           "UnityEngine.CoreModule": "0.0.0.0",
-          "UnityEngine.Il2CppAssetBundleManager": "0.7.0.0"
+          "UnityEngine.Il2CppAssetBundleManager": "0.7.0.0",
+          "UnityEngine.UI": "1.0.0.0"
         },
         "runtime": {
           "MoreGuns.dll": {}
@@ -112,6 +113,14 @@
           }
         }
       },
+      "UnityEngine.UI/1.0.0.0": {
+        "runtime": {
+          "UnityEngine.UI.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "Mono.Cecil/0.11.6.0": {
         "runtime": {
           "Mono.Cecil.dll": {
@@ -148,14 +157,6 @@
         "runtime": {
           "Unity.TextMeshPro.dll": {
             "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "UnityEngine.UI/1.0.0.0": {
-        "runtime": {
-          "UnityEngine.UI.dll": {
-            "assemblyVersion": "1.0.0.0",
             "fileVersion": "0.0.0.0"
           }
         }
@@ -512,6 +513,14 @@
           }
         }
       },
+      "UnityEngine.UIElementsModule/0.0.0.0": {
+        "runtime": {
+          "UnityEngine.UIElementsModule.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "UnityEngine.TextCoreTextEngineModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.TextCoreTextEngineModule.dll": {
@@ -523,14 +532,6 @@
       "UnityEngine.TextCoreFontEngineModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.TextCoreFontEngineModule.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "UnityEngine.UIElementsModule/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.UIElementsModule.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
@@ -751,6 +752,11 @@
       "serviceable": false,
       "sha512": ""
     },
+    "UnityEngine.UI/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Mono.Cecil/0.11.6.0": {
       "type": "reference",
       "serviceable": false,
@@ -772,11 +778,6 @@
       "sha512": ""
     },
     "Unity.TextMeshPro/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "UnityEngine.UI/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -1001,17 +1002,17 @@
       "serviceable": false,
       "sha512": ""
     },
+    "UnityEngine.UIElementsModule/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "UnityEngine.TextCoreTextEngineModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
     "UnityEngine.TextCoreFontEngineModule/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "UnityEngine.UIElementsModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

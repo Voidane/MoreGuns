@@ -125,6 +125,7 @@ namespace MoreGuns.Guns
             CreateConfig();
             SetCustomItemUI();
             LoadAnimations();
+            ApplySettingsFromConfig();
 
             MoreGunsMod.RegisterAsset($"Avatar/Equippables/{ID.ToUpper()}", gunHandgun);
             MoreGunsMod.RegisterAsset($"Weapons/ak47/Magazine/{ID.ToUpper()}_Magazine_AvatarEquippable", magAvatarEquippable);
@@ -132,7 +133,7 @@ namespace MoreGuns.Guns
             allWeapons.Add(this);
             weaponsByName.Add($"{ID}", this);
 
-            MelonLogger.Msg($"Finished Initializing {ID}");
+            MelonLogger.Msg($"[MoreGuns] Finished Initializing {ID}");
         }
 
         public static bool CheckAssetLoaded(UnityEngine.Object asset, string assetName, string weaponName)
