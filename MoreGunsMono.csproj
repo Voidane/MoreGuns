@@ -60,6 +60,10 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\Schedule I_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\Schedule I_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
@@ -84,15 +88,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="Dialogue\StanDialogue.cs" />
+    <Compile Include="Gui\ReloadMessage.cs" />
     <Compile Include="Gui\Reticle.cs" />
+    <Compile Include="Gui\WindupIndicator.cs" />
     <Compile Include="GunConfiguration.cs" />
     <Compile Include="Guns\AK47.cs" />
     <Compile Include="Guns\GunSettings.cs" />
+    <Compile Include="Guns\MiniGun.cs" />
     <Compile Include="Guns\WeaponBase.cs" />
     <Compile Include="MoreGunsMod.cs" />
+    <Compile Include="Patches\BulletTrailPatch.cs" />
+    <Compile Include="Patches\CameraJoltPatch.cs" />
+    <Compile Include="Patches\DialoguePatch.cs" />
     <Compile Include="Patches\Equippale_RangedWeaponPatch.cs" />
     <Compile Include="Patches\ItemRegistryPatch.cs" />
     <Compile Include="Patches\RangedWeaponEquipPatch.cs" />
+    <Compile Include="Patches\ReloadingPatch.cs" />
     <Compile Include="Patches\SetAnimationPatch.cs" />
     <Compile Include="Patches\SetEquippablePatch.cs" />
     <Compile Include="Patches\StanNPCPatch.cs" />

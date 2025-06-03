@@ -47,9 +47,9 @@ namespace MoreGunsMono.Patches
             {
                 MelonLogger.Error("Dialogue comp not found");
             }
-
-            var allWeaponsFields = typeof(DialogueController_ArmsDealer).GetField("allWeapons", 
-                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            
+            var allWeaponsFields = typeof(DialogueController_ArmsDealer).GetField("allWeapons",
+                    System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
 
             if (allWeaponsFields != null)
             {

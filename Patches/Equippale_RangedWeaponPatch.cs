@@ -1,10 +1,13 @@
 ﻿using HarmonyLib;
 using MelonLoader;
+using MoreGunsMono.Gui;
 using MoreGunsMono.Guns;
 using ScheduleOne;
+using ScheduleOne.Audio;
 using ScheduleOne.AvatarFramework;
 using ScheduleOne.DevUtilities;
 using ScheduleOne.Equipping;
+using ScheduleOne.Tools;
 using ScheduleOne.UI;
 using System;
 using System.Collections.Generic;
@@ -18,8 +21,8 @@ namespace MoreGunsMono.Patches
     [HarmonyPatch]
     public static class Equippale_RangedWeaponPatch
     {
-        private static int counter;
         private static float timeSinceLastAutoFire = 0f;
+        private static float timeSinceWindingUp = 0f;
 
         [HarmonyPatch(typeof(Equippable_RangedWeapon), "UpdateInput")]
         [HarmonyPostfix]
@@ -28,37 +31,57 @@ namespace MoreGunsMono.Patches
             if (Time.timeScale == 0f || Singleton<PauseMenu>.Instance.IsPaused)
                 return;
 
-            // MelonLogger.Msg("UpdateInputPostfix patch running");
             if (__instance.gameObject.TryGetComponent<GunSettings>(out GunSettings settings))
             {
-                // MelonLogger.Msg("Gun has settings");
-                if (settings.isAutomatic)
-                {
-                    // MelonLogger.Msg("Gun is automatic");
-                    timeSinceLastAutoFire += Time.deltaTime;
+                bool isAttemptingToShoot = GameInput.GetButton(GameInput.ButtonCode.PrimaryClick);
+                bool isWindingUp = GameInput.GetButton(GameInput.ButtonCode.SecondaryClick);
 
-                    if (GameInput.GetButton(GameInput.ButtonCode.PrimaryClick))
+                if (settings.requiredWindup)
+                {
+                    PlayAnimation anim = __instance.transform.GetChild(0).GetComponent<PlayAnimation>();
+                    AudioSourceController windupSound = anim.transform.Find("Windup Sound").GetComponent<AudioSourceController>();
+                    AudioSourceController shutdownSound = anim.transform.Find("Shutdown Sound").GetComponent<AudioSourceController>();
+
+                    timeSinceWindingUp += Time.deltaTime;
+                    WindupIndicator.SetValueByTime(timeSinceWindingUp, settings.windupTime);
+
+                    if (isWindingUp)
+                    {
+                        if (timeSinceWindingUp <= settings.windupTime || !isAttemptingToShoot)
+                        {
+                            // TODO : Hardcoded windup
+                            anim.Play("MiniGun Windup");
+                            
+                            if (!windupSound.isPlaying)
+                                windupSound.Play();
+                        }
+                    }
+                    else
+                    {
+                        WindupIndicator.SetValue(0);
+                        timeSinceWindingUp = 0F;
+                        windupSound.Stop();
+                    }
+                }
+
+                if (settings.isAutomatic && (settings.requiredWindup && timeSinceWindingUp > settings.windupTime) || settings.isAutomatic && !settings.requiredWindup)
+                {
+                    timeSinceLastAutoFire += Time.deltaTime;
+                    if (isAttemptingToShoot)
                     {
                         if (timeSinceLastAutoFire >= __instance.FireCooldown)
                         {
                             timeSinceLastAutoFire = 0F;
-                            // MelonLogger.Msg("Canfire check method?");
-
                             if ((bool)AccessTools.Method(typeof(Equippable_RangedWeapon), "CanFire").Invoke(__instance, new object[] { false }))
                             {
-                                // MelonLogger.Msg("Yes");
                                 if (__instance.Ammo > 0)
                                 {
-                                    // MelonLogger.Msg("Ammo above 0, Gun shot " + counter++);
-                                    // Check if it needs to be cocked
                                     if (!__instance.MustBeCocked || __instance.IsCocked)
                                     {
-                                        // Access Fire method through reflection since it's public
                                         AccessTools.Method(typeof(Equippable_RangedWeapon), "Fire").Invoke(__instance, null);
                                     }
                                     else
                                     {
-                                        // Access Cock method through reflection since it's private
                                         AccessTools.Method(typeof(Equippable_RangedWeapon), "Cock").Invoke(__instance, null);
                                     }
                                 }
@@ -79,6 +102,23 @@ namespace MoreGunsMono.Patches
                     // MelonLogger.Msg("Gun is not automatic");
                 }
             }
+        }
+
+        [HarmonyPatch(typeof(Equippable_RangedWeapon), "Fire")]
+        [HarmonyPrefix]
+        public static bool Prefix(Equippable_RangedWeapon __instance)
+        {
+            if (__instance.gameObject.TryGetComponent<GunSettings>(out GunSettings settings))
+            {
+                if (settings.requiredWindup && (timeSinceWindingUp < settings.windupTime))
+                {
+                    return false;
+                }
+            }
+            else
+            {
+            }
+            return true;
         }
     }
 }

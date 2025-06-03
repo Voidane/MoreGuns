@@ -64,12 +64,8 @@ namespace MoreGunsMono
 
                 Config.Initialize();
 
-                new AK47
-                (
-                    "ak47",
-                    new Shopping() { purchasePrice = 15000F, displayName = "AK47", available = true, nonAvailableReason = "" },
-                    new Shopping() { purchasePrice = 1000F, displayName = "AK47 Magazine", available = true, nonAvailableReason = "" }
-                );
+                new AK47();
+                new MiniGun();
 
                 TryLoadingDependencies();
             }
@@ -109,6 +105,10 @@ namespace MoreGunsMono
             {
                 NetworkController.SyncConfiguration();
                 Reticle.Initialize();
+
+                Transform HUD = GameObject.Find("UI/HUD").transform;
+                ReloadMessage.Initialize(HUD);
+                WindupIndicator.Initialize(HUD);
             }
             else
             {

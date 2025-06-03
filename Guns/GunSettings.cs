@@ -7,9 +7,13 @@ using UnityEngine;
 
 namespace MoreGunsMono.Guns
 {
-    class GunSettings : MonoBehaviour
+    public class GunSettings : MonoBehaviour
     {
         public bool isAutomatic;
-        public float walkSpeedMultiplier = 1.0F;
+        public float speedMultiplier = 1.0F;
+        public bool cameraJolt = true;
+        public bool requiredWindup;
+        public float windupTime = 0F;
+        public bool canManuallyReload = true;
     }
 }
