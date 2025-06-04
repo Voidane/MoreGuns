@@ -15,6 +15,7 @@ namespace MoreGuns.Guns
 {
     public class WeaponBase
     {
+        public string name;
         public string ID;
 
         public GameObject gunEquippable;
@@ -37,17 +38,20 @@ namespace MoreGuns.Guns
 
         public Shopping gunShop;
         public Shopping magShop;
+        public GunSettings settings;
 
         public bool IsConfigurationFinished { get; private set; }
 
         public static List<WeaponBase> allWeapons = new List<WeaponBase>();
         public static Dictionary<string, WeaponBase> weaponsByName = new Dictionary<string, WeaponBase>();
 
-        public void Init(string ID, Shopping gunShop, Shopping magShop)
+        public void Init(string name, string ID, Shopping gunShop, Shopping magShop, GunSettings settings)
         {
+            this.name = name;
             this.ID = ID;
             this.gunShop = gunShop;
             this.magShop = magShop;
+            this.settings = settings;
 
             MelonLogger.Msg($"Initializing {ID}");
             MelonCoroutines.Start(LoadGun());
@@ -109,8 +113,8 @@ namespace MoreGuns.Guns
                 yield break;
             }
 
-            GunSettings settings = _GunEquippable.AddComponent<GunSettings>();
-            settings.isAutomatic.Value = true;
+            GunSettings _settings = _GunEquippable.AddComponent<GunSettings>();
+            ApplyGunSettings(_settings);
 
             gunEquippable = _GunEquippable;
             magIntItemDef = _MagIntItemDef;
@@ -127,8 +131,8 @@ namespace MoreGuns.Guns
             LoadAnimations();
             ApplySettingsFromConfig();
 
-            MoreGunsMod.RegisterAsset($"Avatar/Equippables/{ID.ToUpper()}", gunHandgun);
-            MoreGunsMod.RegisterAsset($"Weapons/ak47/Magazine/{ID.ToUpper()}_Magazine_AvatarEquippable", magAvatarEquippable);
+            MoreGunsMod.RegisterAsset($"Avatar/Equippables/{this.name}", gunHandgun);
+            MoreGunsMod.RegisterAsset($"Weapons/{ID}/Magazine/{this.name}_Magazine_AvatarEquippable", magAvatarEquippable);
 
             allWeapons.Add(this);
             weaponsByName.Add($"{ID}", this);
@@ -234,7 +238,6 @@ namespace MoreGuns.Guns
 
             foreach (AnimationClip anim in animatorController.animationClips)
             {
-                MelonLogger.Msg($"Animation: {anim.name}");
                 if (anim.name.Contains("Idle"))
                 {
                     animations.Add("BothHands_Grip_Lowered", anim);
@@ -251,6 +254,16 @@ namespace MoreGuns.Guns
                     }
                 }
             }
+        }
+
+        private void ApplyGunSettings(GunSettings _settings)
+        {
+            _settings.isAutomatic.Value = settings.isAutomatic.Value;
+            _settings.speedMultiplier.Value = settings.speedMultiplier.Value;
+            _settings.cameraJolt.Value = settings.cameraJolt.Value;
+            _settings.requireWindup.Value = settings.requireWindup.Value;
+            _settings.windupTime.Value = settings.windupTime.Value;
+            _settings.canManualyReload.Value = settings.canManualyReload.Value;
         }
     }
 }

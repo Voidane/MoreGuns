@@ -4,13 +4,14 @@ using Il2CppScheduleOne.PlayerScripts;
 using MelonLoader;
 using ModManagerPhoneApp;
 using MoreGuns;
+using MoreGuns.Gui;
 using MoreGuns.Guns;
 using MoreGuns.Patches;
 using MoreGuns.Sync;
 using System.Collections;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(MoreGunsMod), "MoreGuns", "1.2.0", "Voidane")]
+[assembly: MelonInfo(typeof(MoreGunsMod), "MoreGuns", "1.2.1", "Voidane")]
 [assembly: MelonGame("TVGS", "Schedule I")]
 
 namespace MoreGuns
@@ -43,12 +44,12 @@ namespace MoreGuns
             {
                 isInitialized = true;
                 MelonLogger.Msg("Assetbundle loaded in.");
-                new AK47
-                (
-                    "ak47",
-                    new Shopping() { purchasePrice = 15000F, displayName = "AK47", available = true, nonAvailableReason = "" },
-                    new Shopping() { purchasePrice = 1000F, displayName = "AK47 Magazine", available = true, nonAvailableReason = "" }
-                );
+
+                Config.Initialize();
+
+                new AK47();
+                new MiniGun();
+
                 TryLoadingDependencies();
             }
             else
@@ -86,6 +87,11 @@ namespace MoreGuns
             if (sceneName == "Main")
             {
                 NetworkController.SyncConfiguration();
+                Reticle.Initialize();
+
+                Transform HUD = GameObject.Find("UI/HUD").transform;
+                ReloadMessage.Initialize(HUD);
+                WindupIndicator.Initialize(HUD);
             }
             else
             {
@@ -96,7 +102,6 @@ namespace MoreGuns
         public static void RegisterAsset(string path, UnityEngine.Object asset)
         {
             Resources[path] = asset;
-            MelonLogger.Msg($"Registered custom asset at path: {path}");
         }
 
         public static UnityEngine.Object TryGetAsset(string path)

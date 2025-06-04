@@ -12,9 +12,14 @@ using Il2CppInterop.Runtime.Injection;
 namespace MoreGuns.Guns
 {
     [RegisterTypeInIl2Cpp]
-    class GunSettings : MonoBehaviour
+    public class GunSettings : MonoBehaviour
     {
         public Il2CppValueField<bool> isAutomatic;
+        public Il2CppValueField<float> speedMultiplier;
+        public Il2CppValueField<bool> cameraJolt;
+        public Il2CppValueField<bool> requireWindup;
+        public Il2CppValueField<float> windupTime;
+        public Il2CppValueField<bool> canManualyReload;
 
         public GunSettings(IntPtr ptr) : base(ptr) { }
 
