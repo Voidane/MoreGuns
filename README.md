@@ -21,12 +21,15 @@
 
 **Guns** 
 AK47
+Minigun
 
 **Bullets**
 7.62x39mm
+7.62x51mm
 
 **Magazines**
-AK47 Magazine (Medium)
+AK47 Magazine (30 Rounds)
+MiniGun Magazine (400 Rounds)
 
 ## ✨ Features
 - Guns Automatics: Some guns can be fired automatically
