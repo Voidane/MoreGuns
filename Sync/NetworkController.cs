@@ -181,13 +181,13 @@ namespace MoreGuns.Sync
                     weap.magIntItemDef.legalStatus = magIIDELegalStatus;
                     weap.magIntItemDef.RequiredRank = magIIDRequiredRank;
 
-                    weap.rangedGun.Name = rangedGunName;
-                    weap.rangedGun.Price = rangedGunPrice;
+                    weap.gunIntItemDef.Name = rangedGunName;
+                    weap.gunIntItemDef.BasePurchasePrice = rangedGunPrice;
                     weap.rangedGun.IsAvailable = rangedGunAvailable;
                     weap.rangedGun.NotAvailableReason = rangedGunNonAvailableReason;
 
-                    weap.ammoGun.Name = ammoGunName;
-                    weap.ammoGun.Price = ammoGunPrice;
+                    weap.magIntItemDef.Name = ammoGunName;
+                    weap.magIntItemDef.BasePurchasePrice = ammoGunPrice;
                     weap.ammoGun.IsAvailable = ammoGunAvailable;
                     weap.ammoGun.NotAvailableReason = ammoGunNonAvailableReason;
                 }

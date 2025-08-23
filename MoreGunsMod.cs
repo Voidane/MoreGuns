@@ -2,7 +2,6 @@
 using Il2CppScheduleOne.ItemFramework;
 using Il2CppScheduleOne.PlayerScripts;
 using MelonLoader;
-using ModManagerPhoneApp;
 using MoreGuns;
 using MoreGuns.Gui;
 using MoreGuns.Guns;
@@ -49,8 +48,6 @@ namespace MoreGuns
 
                 new AK47();
                 new MiniGun();
-
-                TryLoadingDependencies();
             }
             else
             {
@@ -63,23 +60,6 @@ namespace MoreGuns
         public override void OnApplicationQuit()
         {
             harmony.UnpatchSelf();
-        }
-
-        private static void TryLoadingDependencies()
-        {
-            try
-            {
-                MelonLogger.Msg("Subscribing to all guns configuration events to phone manager");
-                foreach (var weapon in WeaponBase.allWeapons)
-                {
-                    weapon.config.OnSettingChanged += weapon.ApplySettingsFromConfig;
-                    ModSettingsEvents.OnPreferencesSaved += weapon.config.HandleSettingsUpdate;
-                }
-            }
-            catch (Exception ex)
-            {
-                MelonLogger.Warning($"{ex.Message}");
-            }
         }
 
         public override void OnSceneWasLoaded(int buildIndex, string sceneName)

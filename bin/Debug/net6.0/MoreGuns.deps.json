@@ -15,7 +15,6 @@
           "Il2CppInterop.Runtime": "1.4.6.0",
           "Il2Cppmscorlib": "4.0.0.0",
           "MelonLoader": "0.7.0.0",
-          "ModManager&PhoneApp": "1.0.0.0",
           "UnityEngine.AnimationModule": "0.0.0.0",
           "UnityEngine.CoreModule": "0.0.0.0",
           "UnityEngine.Il2CppAssetBundleManager": "0.7.0.0",
@@ -78,14 +77,6 @@
           "MelonLoader.dll": {
             "assemblyVersion": "0.7.0.0",
             "fileVersion": "0.7.0.0"
-          }
-        }
-      },
-      "ModManager&PhoneApp/1.0.0.0": {
-        "runtime": {
-          "ModManager&PhoneApp.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -217,10 +208,10 @@
           }
         }
       },
-      "Unity.InputSystem/1.7.0.0": {
+      "Unity.InputSystem/1.14.1.0": {
         "runtime": {
           "Unity.InputSystem.dll": {
-            "assemblyVersion": "1.7.0.0",
+            "assemblyVersion": "1.14.1.0",
             "fileVersion": "0.0.0.0"
           }
         }
@@ -228,14 +219,6 @@
       "Assembly-CSharp-firstpass/0.0.0.0": {
         "runtime": {
           "Assembly-CSharp-firstpass.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "UnityEngine.AIModule/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.AIModule.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
@@ -257,17 +240,17 @@
           }
         }
       },
-      "Il2CppBoxophobic.AtmosphericHeightFog.Runtime/0.0.0.0": {
+      "Il2CppCorgiGodRays/0.0.0.0": {
         "runtime": {
-          "Il2CppBoxophobic.AtmosphericHeightFog.Runtime.dll": {
+          "Il2CppCorgiGodRays.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
         }
       },
-      "Il2CppCorgiGodRays/0.0.0.0": {
+      "UnityEngine.AIModule/0.0.0.0": {
         "runtime": {
-          "Il2CppCorgiGodRays.dll": {
+          "UnityEngine.AIModule.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
@@ -317,6 +300,14 @@
         "runtime": {
           "Il2CppSystem.dll": {
             "assemblyVersion": "4.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Il2CppLokoSolo.PinchableScrollRect/0.0.0.0": {
+        "runtime": {
+          "Il2CppLokoSolo.PinchableScrollRect.dll": {
+            "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
         }
@@ -489,14 +480,6 @@
           }
         }
       },
-      "UnityEngine.ImageConversionModule/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.ImageConversionModule.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
       "UnityEngine.TextRenderingModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.TextRenderingModule.dll": {
@@ -505,17 +488,17 @@
           }
         }
       },
-      "UnityEngine.InputLegacyModule/0.0.0.0": {
+      "UnityEngine.UIElementsModule/0.0.0.0": {
         "runtime": {
-          "UnityEngine.InputLegacyModule.dll": {
+          "UnityEngine.UIElementsModule.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
         }
       },
-      "UnityEngine.UIElementsModule/0.0.0.0": {
+      "UnityEngine.InputLegacyModule/0.0.0.0": {
         "runtime": {
-          "UnityEngine.UIElementsModule.dll": {
+          "UnityEngine.InputLegacyModule.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
@@ -577,14 +560,6 @@
           }
         }
       },
-      "Il2CppBoxophobic.Utils.Scripts/0.0.0.0": {
-        "runtime": {
-          "Il2CppBoxophobic.Utils.Scripts.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
       "Il2CppPathfinding.Ionic.Zip.Reduced/1.9.1.9000": {
         "runtime": {
           "Il2CppPathfinding.Ionic.Zip.Reduced.dll": {
@@ -636,6 +611,14 @@
       "UnityEngine.AssetBundleModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.AssetBundleModule.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "UnityEngine.ImageConversionModule/0.0.0.0": {
+        "runtime": {
+          "UnityEngine.ImageConversionModule.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
@@ -732,11 +715,6 @@
       "serviceable": false,
       "sha512": ""
     },
-    "ModManager&PhoneApp/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
     "UnityEngine.AnimationModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -817,17 +795,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Unity.InputSystem/1.7.0.0": {
+    "Unity.InputSystem/1.14.1.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
     "Assembly-CSharp-firstpass/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "UnityEngine.AIModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -842,12 +815,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Il2CppBoxophobic.AtmosphericHeightFog.Runtime/0.0.0.0": {
+    "Il2CppCorgiGodRays/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
-    "Il2CppCorgiGodRays/0.0.0.0": {
+    "UnityEngine.AIModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -878,6 +851,11 @@
       "sha512": ""
     },
     "Il2CppSystem/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Il2CppLokoSolo.PinchableScrollRect/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -987,22 +965,17 @@
       "serviceable": false,
       "sha512": ""
     },
-    "UnityEngine.ImageConversionModule/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
     "UnityEngine.TextRenderingModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
-    "UnityEngine.InputLegacyModule/0.0.0.0": {
+    "UnityEngine.UIElementsModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
-    "UnityEngine.UIElementsModule/0.0.0.0": {
+    "UnityEngine.InputLegacyModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -1042,11 +1015,6 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Il2CppBoxophobic.Utils.Scripts/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
     "Il2CppPathfinding.Ionic.Zip.Reduced/1.9.1.9000": {
       "type": "reference",
       "serviceable": false,
@@ -1078,6 +1046,11 @@
       "sha512": ""
     },
     "UnityEngine.AssetBundleModule/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UnityEngine.ImageConversionModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

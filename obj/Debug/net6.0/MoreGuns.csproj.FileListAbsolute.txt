@@ -8,7 +8,6 @@ C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Il2CppFishNet.Ru
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Il2CppInterop.Runtime.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Il2Cppmscorlib.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\MelonLoader.dll
-C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\ModManager&PhoneApp.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.AnimationModule.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.CoreModule.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.Il2CppAssetBundleManager.dll
@@ -27,17 +26,17 @@ C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Unity.RenderPipe
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Il2CppRadiantGI.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Unity.InputSystem.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Assembly-CSharp-firstpass.dll
-C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.AIModule.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Unity.AI.Navigation.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.WindModule.dll
-C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Il2CppBoxophobic.AtmosphericHeightFog.Runtime.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Il2CppCorgiGodRays.dll
+C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.AIModule.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.VehiclesModule.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Il2CppAstarPathfindingProject.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.TerrainModule.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Il2CppRootMotion.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Il2CppHSVPicker.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Il2CppSystem.dll
+C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Il2CppLokoSolo.PinchableScrollRect.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.UnityWebRequestModule.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.UnityWebRequestWWWModule.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Il2CppInterop.Common.dll
@@ -59,10 +58,9 @@ C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Mono.Cecil.Pdb.d
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Mono.Cecil.Rocks.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\AsmResolver.PE.File.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Il2CppInterop.HarmonySupport.dll
-C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.ImageConversionModule.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.TextRenderingModule.dll
-C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.InputLegacyModule.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.UIElementsModule.dll
+C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.InputLegacyModule.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.TextCoreTextEngineModule.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.TextCoreFontEngineModule.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Unity.RenderPipeline.Universal.ShaderLibrary.dll
@@ -70,7 +68,6 @@ C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Unity.Mathematic
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.XRModule.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.InputModule.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Il2CppSystem.Xml.dll
-C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Il2CppBoxophobic.Utils.Scripts.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Il2CppPathfinding.Ionic.Zip.Reduced.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Il2CppPathfinding.Poly2Tri.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Il2CppPathfinding.ClipperLib.dll
@@ -78,6 +75,7 @@ C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.Dire
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Il2CppMono.Security.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Il2CppSystem.Configuration.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.AssetBundleModule.dll
+C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\UnityEngine.ImageConversionModule.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\WebSocketDotNet.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\MonoMod.Backports.dll
 C:\Users\Austin\source\repos\MoreGuns\MoreGuns\bin\Debug\net6.0\Microsoft.Diagnostics.NETCore.Client.dll

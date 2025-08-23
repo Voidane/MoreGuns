@@ -210,19 +210,19 @@ namespace MoreGuns.Guns
 
         private void CreateDialogueControllerOptions()
         {
+            gunIntItemDef.Name = config.ItemName.Value;
+            gunIntItemDef.BasePurchasePrice = config.PurchasePrice.Value;
             rangedGun = new DialogueController_ArmsDealer.WeaponOption
             {
-                Name = config.ItemName.Value,
-                Price = config.PurchasePrice.Value,
                 IsAvailable = config.Available.Value,
                 NotAvailableReason = config.AvailableReason.Value,
                 Item = gunIntItemDef
             };
 
+            magIntItemDef.Name = config.MagItemName.Value;
+            magIntItemDef.BasePurchasePrice = config.MagPurchasePrice.Value;
             ammoGun = new DialogueController_ArmsDealer.WeaponOption
             {
-                Name = config.MagItemName.Value,
-                Price = config.MagPurchasePrice.Value,
                 IsAvailable = config.MagAvailable.Value,
                 NotAvailableReason = config.MagAvailableReason.Value,
                 Item = magIntItemDef
