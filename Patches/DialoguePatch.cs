@@ -24,7 +24,6 @@ namespace MoreGunsMono.Patches
                 if (node.Guid == StanDialogue.allWeaponCategoryOptions)
                 {
                     List<DialogueChoiceData> values = node.choices.ToList();
-                    MelonLogger.Msg($"Move: {values[3].ChoiceText}");
                     DialogueChoiceData nevermind = values[3];
                     values[3] = new DialogueChoiceData() { Guid = "voiddial-stan-guns-opti-reloadmultgn", ChoiceText = "Reload Guns", ChoiceLabel = "Reload Guns" };
                     values.Add(nevermind);

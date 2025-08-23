@@ -21,8 +21,6 @@ namespace MoreGunsMono.Patches
         [HarmonyPrefix]
         public static bool Prefix(PlayerCamera __instance)
         {
-            MelonLogger.Msg($"JOLTED! From Gun: {ID}");
-            
             if (WeaponBase.weaponsByName.TryGetValue(ID, out WeaponBase gun))
             {
                 if (!gun.settings.cameraJolt)

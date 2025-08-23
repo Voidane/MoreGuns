@@ -20,7 +20,6 @@ using ScheduleOne;
 using ScheduleOne.Persistence;
 using MoreGunsMono.Patches;
 using VLB;
-using ModManagerPhoneApp;
 using Steamworks;
 using MoreGunsMono.Sync;
 using MoreGunsMono.Gui;
@@ -66,8 +65,6 @@ namespace MoreGunsMono
 
                 new AK47();
                 new MiniGun();
-
-                TryLoadingDependencies();
             }
             else
             {
@@ -82,22 +79,6 @@ namespace MoreGunsMono
             harmony.UnpatchSelf();
         }
 
-        private static void TryLoadingDependencies()
-        {
-            try
-            {
-                MelonLogger.Msg("Subscribing to all guns configuration events to phone manager");
-                foreach (var weapon in WeaponBase.allWeapons)
-                {
-                    weapon.config.OnSettingChanged += weapon.ApplySettingsFromConfig;
-                    ModSettingsEvents.OnPreferencesSaved += weapon.config.HandleSettingsUpdate;
-                }
-            }
-            catch (Exception ex)
-            {
-                MelonLogger.Warning($"{ex.Message}");
-            }
-        }
 
         public override void OnSceneWasLoaded(int buildIndex, string sceneName)
         {

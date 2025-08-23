@@ -74,19 +74,23 @@ namespace MoreGunsMono.Guns
 
         private void CreateDialogueControllerOptions()
         {
+            gunIntItemDef.BasePurchasePrice = config.PurchasePrice.Value;
+            gunIntItemDef.Name = config.ItemName.Value;
             rangedGun = new DialogueController_ArmsDealer.WeaponOption
             {
-                Name = config.ItemName.Value,
-                Price = config.PurchasePrice.Value,
+                // Name = config.ItemName.Value, removed in cartel update moved to Item
+                // Price = config.PurchasePrice.Value, removed in cartel update moved to Item
                 IsAvailable = config.Available.Value,
                 NotAvailableReason = config.AvailableReason.Value,
                 Item = gunIntItemDef
             };
 
+            magIntItemDef.BasePurchasePrice = config.MagPurchasePrice.Value;
+            magIntItemDef.Name = config.MagItemName.Value;
             ammoGun = new DialogueController_ArmsDealer.WeaponOption
             {
-                Name = config.MagItemName.Value,
-                Price = config.MagPurchasePrice.Value,
+                // Name = config.MagItemName.Value, removed in cartel update moved to Item
+                // Price = config.MagPurchasePrice.Value, removed in cartel update moved to Item
                 IsAvailable = config.MagAvailable.Value,
                 NotAvailableReason = config.MagAvailableReason.Value,
                 Item = magIntItemDef

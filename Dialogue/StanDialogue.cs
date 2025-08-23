@@ -33,7 +33,6 @@ namespace MoreGunsMono.Dialogue
                 {
                     if (item?.ItemInstance?.Definition == null)
                     {
-                        MelonLogger.Msg("Skipping null item or definition");
                         continue;
                     }
 
