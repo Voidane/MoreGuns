@@ -41,7 +41,7 @@ namespace MoreGuns.Patches
             }
             else
             {
-                values.Remove(reloadDialogue);
+                values.RemoveAll(choice => choice.ChoiceLabel == "Reload Guns");
                 node.choices = values.ToArray();
             }
         }
