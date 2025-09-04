@@ -20,7 +20,7 @@ namespace MoreGuns.Sync
         private const string IDENTIFICATION_PREFIX = "moreguns_settings";
         private static readonly string version = typeof(MoreGunsMod).Assembly.GetName().Version.ToString();
         public static bool IsSynced { get; private set; } = false;
-        public static StringBuilder payload;
+        public static StringBuilder payload = new StringBuilder();
 
         public static bool forceHost = false;
         public static bool forceClient = false;
@@ -83,7 +83,8 @@ namespace MoreGuns.Sync
                     yield return new WaitForSeconds(0.05F);
                 }
 
-                MelonLogger.Msg("Adding new gun");
+                MelonLogger.Msg($"Adding {weapon.ID} gun to payload");
+
                 payload.Append($"@{weapon.ID}" +
                 $":" +
                 $"{weapon.gunRangedWeapon.Damage}:" +
@@ -119,7 +120,7 @@ namespace MoreGuns.Sync
 
         private static void HostToClientConfigurationSync(string data)
         {
-            MelonLogger.Msg($"{data}");
+            MelonLogger.Msg($"Data: {data}");
             string[] dataVersion = data.Split('|').Where(item => !string.IsNullOrEmpty(item)).ToArray();
             if (!IsModValidForSync(dataVersion[0]))
             {

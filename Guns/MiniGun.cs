@@ -23,8 +23,6 @@ namespace MoreGuns.Guns
             {
                 string name = "MiniGun";
                 string _ID = "minigun";
-                Shopping gunShop = new Shopping() { purchasePrice = 75000F, displayName = "MiniGun", available = true, nonAvailableReason = "" };
-                Shopping magShop = new Shopping() { purchasePrice = 10000F, displayName = "MiniGun Magazine", available = true, nonAvailableReason = "" };
 
                 GunSettings settings = new GunSettings();
                 settings.isAutomatic.Value = true;
@@ -34,7 +32,7 @@ namespace MoreGuns.Guns
                 settings.windupTime.Value = 2.0F;
                 settings.canManualyReload.Value = false;
 
-                Init(name, _ID, gunShop, magShop, settings);
+                Init(name, _ID, settings);
                 instance = this;
             };
         }

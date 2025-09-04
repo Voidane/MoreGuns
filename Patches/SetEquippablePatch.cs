@@ -39,28 +39,24 @@ namespace MoreGuns.Patches
             UnityEngine.Object UEObjectAsset = MoreGunsMod.TryGetAsset(assetPath);
             if (UEObjectAsset == null)
             {
-                MelonLogger.Warning($"Could not find custom asset. {assetPath}");
                 return true;
             }
             
             GameObject GOAsset = UEObjectAsset.Cast<GameObject>();
             if (GOAsset == null)
             {
-                MelonLogger.Warning("GOAsset was null");
                 return true;
             }
             
             GameObject equippable = UnityEngine.Object.Instantiate(GOAsset);
             if (equippable == null)
             {
-                MelonLogger.Warning("equippable was null");
                 return true;
             }
 
             AvatarEquippable avatarEquippable = equippable.GetComponent<AvatarEquippable>();
             if (equippable == null)
             {
-                MelonLogger.Warning("avatar equippable was null");
                 return true;
             }
 

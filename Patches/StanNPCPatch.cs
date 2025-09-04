@@ -16,6 +16,11 @@ namespace MoreGuns.Patches
     [HarmonyPatch]
     public static class StanNPCPatch
     {
+        /**
+         * 
+         * Shop changed to Shoplisting UI (0.4.x) : ArmsDealerInterfacePatch
+         * Removed in v1.4.0
+         * 
         public static object coroutine;
 
         [HarmonyPatch(typeof(Stan), "Loaded")]
@@ -85,5 +90,6 @@ namespace MoreGuns.Patches
                 }
             }
         }
+        */
     }
 }

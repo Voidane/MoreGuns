@@ -24,8 +24,6 @@ namespace MoreGuns.Guns
         {
             string name = "AK47";
             string _ID = "ak47";
-            Shopping gunShop = new Shopping() { purchasePrice = 15000F, displayName = "AK47", available = true, nonAvailableReason = "" };
-            Shopping magShop = new Shopping() { purchasePrice = 1000F, displayName = "AK47 Magazine", available = true, nonAvailableReason = "" };
 
             GunSettings settings = new GunSettings();
             settings.isAutomatic.Value = true;
@@ -35,7 +33,7 @@ namespace MoreGuns.Guns
             settings.windupTime.Value = 0.0F;
             settings.canManualyReload.Value = true;
 
-            Init(name, _ID, gunShop, magShop, settings);
+            Init(name, _ID, settings);
             instance = this;
         }
     }

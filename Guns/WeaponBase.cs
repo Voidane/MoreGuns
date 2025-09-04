@@ -2,6 +2,7 @@
 using Il2CppScheduleOne.Equipping;
 using Il2CppScheduleOne.ItemFramework;
 using Il2CppScheduleOne.Trash;
+using Il2CppScheduleOne.UI.Shop;
 using MelonLoader;
 using System;
 using System.Collections;
@@ -36,8 +37,8 @@ namespace MoreGuns.Guns
 
         public GunConfiguration config;
 
-        public Shopping gunShop;
-        public Shopping magShop;
+        public ShopListing gunShop;
+        public ShopListing magShop;
         public GunSettings settings;
 
         public bool IsConfigurationFinished { get; private set; }
@@ -45,12 +46,10 @@ namespace MoreGuns.Guns
         public static List<WeaponBase> allWeapons = new List<WeaponBase>();
         public static Dictionary<string, WeaponBase> weaponsByName = new Dictionary<string, WeaponBase>();
 
-        public void Init(string name, string ID, Shopping gunShop, Shopping magShop, GunSettings settings)
+        public void Init(string name, string ID, GunSettings settings)
         {
             this.name = name;
             this.ID = ID;
-            this.gunShop = gunShop;
-            this.magShop = magShop;
             this.settings = settings;
 
             MelonLogger.Msg($"Initializing {ID}");
@@ -130,6 +129,7 @@ namespace MoreGuns.Guns
             SetCustomItemUI();
             LoadAnimations();
             ApplySettingsFromConfig();
+            CreatGunShopListing();
 
             MoreGunsMod.RegisterAsset($"Avatar/Equippables/{this.name}", gunHandgun);
             MoreGunsMod.RegisterAsset($"Weapons/{ID}/Magazine/{this.name}_Magazine_AvatarEquippable", magAvatarEquippable);
@@ -159,6 +159,21 @@ namespace MoreGuns.Guns
         {
             config = new GunConfiguration(this);
             MelonLogger.Msg("Created new config");
+        }
+
+        private void CreatGunShopListing()
+        {
+            gunShop = new ShopListing()
+            {
+                name = $"{gunIntItemDef.Name} (${gunIntItemDef.BasePurchasePrice}) () [Rank {gunIntItemDef.RequiredRank}]",
+                Item = gunIntItemDef,
+            };
+
+            magShop = new ShopListing()
+            {
+                name = $"{magIntItemDef.Name} (${magIntItemDef.BasePurchasePrice}) () [Rank {magIntItemDef.RequiredRank}]",
+                Item = magIntItemDef,
+            };
         }
 
         private void SetCustomItemUI()
@@ -208,6 +223,7 @@ namespace MoreGuns.Guns
             CreateDialogueControllerOptions();
         }
 
+        // TODO update networking with the new Shoplisting to work with.
         private void CreateDialogueControllerOptions()
         {
             gunIntItemDef.Name = config.ItemName.Value;

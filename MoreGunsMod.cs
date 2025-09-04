@@ -10,7 +10,7 @@ using MoreGuns.Sync;
 using System.Collections;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(MoreGunsMod), "MoreGuns", "1.2.1", "Voidane")]
+[assembly: MelonInfo(typeof(MoreGunsMod), "MoreGuns", "1.4.0", "Voidane")]
 [assembly: MelonGame("TVGS", "Schedule I")]
 
 namespace MoreGuns

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MoreGuns")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9d71d8ee300a4ebcdf01b11229ca20c6028a8b4f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+de6ba7e680d378298e32ecf1f3cf445ef207407c")]
 [assembly: System.Reflection.AssemblyProductAttribute("MoreGuns")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MoreGuns")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

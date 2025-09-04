@@ -11,7 +11,7 @@ namespace MoreGuns.Dialogue
 {
     public static class StanDialogue
     {
-        public const string allWeaponCategoryOptions = "925ea1d9-9b7e-47a0-b016-6a3b787290c3";
+        public const string stanDialogueMainOptions = "72f05df5-cfd4-4be3-9239-fc31bb44f49b";
         public static List<ItemInstance> allGuns = new List<ItemInstance>();
         public static Dictionary<string, ItemInstance> allMags = new Dictionary<string, ItemInstance>();
 
