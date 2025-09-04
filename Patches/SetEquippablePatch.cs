@@ -35,18 +35,9 @@ namespace MoreGunsMono.Patches
             }
 
             GameObject asset = Resource.TryGetAsset(assetPath) as GameObject;
-            if (asset == null)
-            {
-                MelonLogger.Error("asset couldntbe found");
-            }
 
             GameObject equippable = UnityEngine.Object.Instantiate(asset, null);
             AvatarEquippable avatarEquippable = equippable.GetComponent<AvatarEquippable>();
-
-            if (avatarEquippable == null)
-            {
-                MelonLogger.Msg("avatar equip was null");
-            }
 
             AccessTools.Property(typeof(ScheduleOne.AvatarFramework.Avatar), "CurrentEquippable").SetValue(__instance, avatarEquippable);
 

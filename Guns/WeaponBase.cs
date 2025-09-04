@@ -5,6 +5,7 @@ using ScheduleOne.Dialogue;
 using ScheduleOne.Equipping;
 using ScheduleOne.ItemFramework;
 using ScheduleOne.Trash;
+using ScheduleOne.UI.Shop;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -37,8 +38,8 @@ namespace MoreGunsMono.Guns
 
         public GunConfiguration config;
 
-        public Shopping gunShop;
-        public Shopping magShop;
+        public ShopListing gunShop;
+        public ShopListing magShop;
         public GunSettings settings;
 
         public bool IsConfigurationFinished { get; private set; }
@@ -46,11 +47,9 @@ namespace MoreGunsMono.Guns
         public static List<WeaponBase> allWeapons = new List<WeaponBase>();
         public static Dictionary<string, WeaponBase> weaponsByName = new Dictionary<string, WeaponBase>();
 
-        public void Init(string ID, Shopping gunShop, Shopping magShop, GunSettings settings)
+        public void Init(string ID,  GunSettings settings)
         {
             this.ID = ID;
-            this.gunShop = gunShop;
-            this.magShop = magShop;
             this.settings = settings;
 
             MelonLogger.Msg($"Initializing {ID}");
@@ -78,8 +77,6 @@ namespace MoreGunsMono.Guns
             gunIntItemDef.Name = config.ItemName.Value;
             rangedGun = new DialogueController_ArmsDealer.WeaponOption
             {
-                // Name = config.ItemName.Value, removed in cartel update moved to Item
-                // Price = config.PurchasePrice.Value, removed in cartel update moved to Item
                 IsAvailable = config.Available.Value,
                 NotAvailableReason = config.AvailableReason.Value,
                 Item = gunIntItemDef
@@ -89,8 +86,6 @@ namespace MoreGunsMono.Guns
             magIntItemDef.Name = config.MagItemName.Value;
             ammoGun = new DialogueController_ArmsDealer.WeaponOption
             {
-                // Name = config.MagItemName.Value, removed in cartel update moved to Item
-                // Price = config.MagPurchasePrice.Value, removed in cartel update moved to Item
                 IsAvailable = config.MagAvailable.Value,
                 NotAvailableReason = config.MagAvailableReason.Value,
                 Item = magIntItemDef
@@ -181,12 +176,22 @@ namespace MoreGunsMono.Guns
             magAvatarEquippable = _GunMagAvatarEquippable;
 
             gunRangedWeapon = gunEquippable.GetComponent<Equippable_RangedWeapon>();
+            if (gunRangedWeapon.AvatarEquippable != null)
+            {
+                MelonLogger.Msg("avatar equippable was not null while loading in");
+            }
+            else
+            {
+                MelonLogger.Warning("avatar equippable was null while loading in");
+            }
+
             gunMagTrashItem = gunMagTrash.GetComponent<TrashItem>();
 
             CreateConfig();
             SetCustomItemUI();
             LoadAnimations();
             ApplySettingsFromConfig();
+            CreatGunShopListing();
 
             Resource.RegisterAsset($"Avatar/Equippables/{ID.ToUpper()}", gunHandgun);
             Resource.RegisterAsset($"Weapons/{ID}/Magazine/{ID.ToUpper()}_Magazine_AvatarEquippable", magAvatarEquippable);
@@ -243,6 +248,21 @@ namespace MoreGunsMono.Guns
                     }
                 }
             }
+        }
+
+        private void CreatGunShopListing()
+        {
+            gunShop = new ShopListing()
+            {
+                name = $"{gunIntItemDef.Name} (${gunIntItemDef.BasePurchasePrice}) () [Rank {gunIntItemDef.RequiredRank}]",
+                Item = gunIntItemDef,
+            };
+
+            magShop = new ShopListing()
+            {
+                name = $"{magIntItemDef.Name} (${magIntItemDef.BasePurchasePrice}) () [Rank {magIntItemDef.RequiredRank}]",
+                Item = magIntItemDef,
+            };
         }
 
         private void ApplyGunSettings(GunSettings _settings)

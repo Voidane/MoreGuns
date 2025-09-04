@@ -88,16 +88,16 @@ namespace MoreGunsMono
             MagRequiredRank = Category.CreateEntry($"{ID} Mag Required Rank", new FullRank(ERank.Underlord, 3));
 
             var gunShop = weapon.gunShop;
-            PurchasePrice = Category.CreateEntry($"{ID} Price", gunShop.purchasePrice);
-            ItemName = Category.CreateEntry($"{ID} Name", gunShop.displayName);
-            Available = Category.CreateEntry($"{ID} Shop Availability", gunShop.available);
-            AvailableReason = Category.CreateEntry($"{ID} Non-Available Reason", gunShop.nonAvailableReason);
+            PurchasePrice = Category.CreateEntry($"{ID} Price", gunIntItemDef.BasePurchasePrice);
+            ItemName = Category.CreateEntry($"{ID} Name", gunIntItemDef.Name);
+            Available = Category.CreateEntry($"{ID} Shop Availability", true);
+            AvailableReason = Category.CreateEntry($"{ID} Non-Available Reason", "");
 
             var magShop = weapon.magShop;
-            MagPurchasePrice = Category.CreateEntry($"{ID} Magazine Price", magShop.purchasePrice);
-            MagItemName = Category.CreateEntry($"{ID} Magazine Name", magShop.displayName);
-            MagAvailable = Category.CreateEntry($"{ID} Magazine Shop Availability", magShop.available);
-            MagAvailableReason = Category.CreateEntry($"{ID} Magazine Non-Available Reason", magShop.nonAvailableReason);
+            MagPurchasePrice = Category.CreateEntry($"{ID} Magazine Price", magIntItemDef.BasePurchasePrice);
+            MagItemName = Category.CreateEntry($"{ID} Magazine Name", magIntItemDef.Name);
+            MagAvailable = Category.CreateEntry($"{ID} Magazine Shop Availability", true);
+            MagAvailableReason = Category.CreateEntry($"{ID} Magazine Non-Available Reason", "");
         }
 
         public void HandleSettingsUpdate()

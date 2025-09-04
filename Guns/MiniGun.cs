@@ -32,7 +32,7 @@ namespace MoreGunsMono.Guns
                     canManuallyReload = false
                 };
 
-                Init(_ID, gunShop, magShop, settings);
+                Init(_ID, settings);
                 instance = this;
             }
         }

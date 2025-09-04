@@ -13,6 +13,12 @@ using MoreGunsMono.Guns;
 
 namespace MoreGunsMono.Patches
 {
+    /**
+     * 
+     * Shop changed to Shoplisting UI (0.4.x) : ArmsDealerInterfacePatch
+     * Removed in v1.4.0
+     * 
+    
     [HarmonyPatch]
     public static class StanNPCPatch
     {
@@ -94,4 +100,5 @@ namespace MoreGunsMono.Patches
             }
         }
     }
+    **/
 }

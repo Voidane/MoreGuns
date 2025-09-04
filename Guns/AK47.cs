@@ -1,4 +1,6 @@
-﻿namespace MoreGunsMono.Guns
+﻿using ScheduleOne.UI.Shop;
+
+namespace MoreGunsMono.Guns
 {
     public class AK47 : WeaponBase
     {
@@ -13,9 +15,7 @@
             if (instance == null)
             {
                 string _ID = "ak47";
-                Shopping gunShop = new Shopping() { purchasePrice = 15000F, displayName = "AK47", available = true, nonAvailableReason = "" };
-                Shopping magShop = new Shopping() { purchasePrice = 1000F, displayName = "AK47 Magazine", available = true, nonAvailableReason = "" };
-                
+
                 GunSettings settings = new GunSettings()
                 {
                     isAutomatic = true,
@@ -26,7 +26,7 @@
                     canManuallyReload = true
                 };
 
-                Init(_ID, gunShop, magShop, settings);
+                Init(_ID, settings);
                 instance = this;
             }
         }

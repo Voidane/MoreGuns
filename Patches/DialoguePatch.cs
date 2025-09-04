@@ -4,6 +4,7 @@ using MoreGunsMono.Dialogue;
 using ScheduleOne.Dialogue;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,23 +14,30 @@ namespace MoreGunsMono.Patches
     [HarmonyPatch]
     public static class DialoguePatch
     {
-        public static bool called = false;
+        public static bool isInititalized = false;
+        private static DialogueChoiceData reloadDialogue;
 
         [HarmonyPatch(typeof(DialogueHandler), "ShowNode")]
         [HarmonyPrefix]
         public static void Prefix(DialogueHandler __instance, DialogueNodeData node)
         {
-            if (!called)
+            if (!isInititalized)
             {
-                if (node.Guid == StanDialogue.allWeaponCategoryOptions)
-                {
-                    List<DialogueChoiceData> values = node.choices.ToList();
-                    DialogueChoiceData nevermind = values[3];
-                    values[3] = new DialogueChoiceData() { Guid = "voiddial-stan-guns-opti-reloadmultgn", ChoiceText = "Reload Guns", ChoiceLabel = "Reload Guns" };
-                    values.Add(nevermind);
-                    node.choices = values.ToArray();
-                    called = true;
-                }
+                reloadDialogue = new DialogueChoiceData() { Guid = "voiddial-stan-guns-opti-reloadmultgn", ChoiceText = "Reload Guns", ChoiceLabel = "Reload Guns" };
+                isInititalized = true;
+            }
+
+            List<DialogueChoiceData> values = node.choices.ToList();
+            if (node.Guid == StanDialogue.stanDialogueMainOptions && __instance.NPC.name == "Stan")
+            {
+                if (!values.Contains(reloadDialogue))
+                    values.Add(reloadDialogue);
+                node.choices = values.ToArray();
+            }
+            else
+            {
+                values.Remove(reloadDialogue);
+                node.choices = values.ToArray();
             }
         }
 

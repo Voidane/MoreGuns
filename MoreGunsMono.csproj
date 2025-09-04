@@ -98,6 +98,7 @@
     <Compile Include="Guns\MiniGun.cs" />
     <Compile Include="Guns\WeaponBase.cs" />
     <Compile Include="MoreGunsMod.cs" />
+    <Compile Include="Patches\ArmsDealerInterfacePatch.cs" />
     <Compile Include="Patches\BulletTrailPatch.cs" />
     <Compile Include="Patches\CameraJoltPatch.cs" />
     <Compile Include="Patches\DialoguePatch.cs" />
